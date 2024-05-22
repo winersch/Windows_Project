@@ -6,7 +6,7 @@
 
 #include "..\\Maple_Engine_SOURCE\\MApplication.h"
 
-Application app;
+maple::Application app;
 
 #define MAX_LOADSTRING 100
 
@@ -29,8 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	app.test();
-
+	
 
 	// TODO: 여기에 코드를 입력합니다.
 
@@ -38,6 +37,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 	LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadStringW(hInstance, IDC_WINDOWSPROJECT, szWindowClass, MAX_LOADSTRING);
 	MyRegisterClass(hInstance);
+	
 
 	// 애플리케이션 초기화를 수행합니다:
 	if (!InitInstance(hInstance, nCmdShow)) {
@@ -64,7 +64,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 				DispatchMessage(&msg);
 			}
 		} else {
-			int a = 0;
+			app.Run();
 			// 메시지가 없으면 여기서 처리
 			// 게임 로직이 들어가면 된다.
 		}
@@ -126,6 +126,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, 1366, 768, nullptr, nullptr, hInstance, nullptr);
 
+	app.Initialize(hWnd);
+
+
 	if (!hWnd) {
 		return FALSE;
 	}
@@ -169,24 +172,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			PAINTSTRUCT ps;
 			HDC hdc = BeginPaint(hWnd, &ps);
 
-			HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));
-
-			HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
-
-			Rectangle(hdc, 100, 100, 200, 200);
-
-			SelectObject(hdc, oldBrush);
-
-			DeleteObject(blueBrush);
-
-			HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-			HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
-
-			Ellipse(hdc, 100, 100, 200, 200);
-
-			SelectObject(hdc, oldPen);
-			DeleteObject(redPen);
-
+			
 
 			EndPaint(hWnd, &ps);
 		}
