@@ -1,7 +1,8 @@
 #pragma once 
 #include "MGameObject.h"
 #include "CommonInclude.h"
-
+#include "MInput.h"
+#include "MTime.h"
 
 namespace maple {
 	
@@ -24,24 +25,26 @@ namespace maple {
 	}
 
 	void GameObject::Update() {
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+		float speed = 100.0f;
+		speed += Time::DeltaTime();
+		if (Input::GetKey(eKeyCode::A)) {
 			if (mX >= 0.0f) {
-				mX -= 0.01f;
+				mX -= speed * Time::DeltaTime();
 			}
 		}
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+		if (Input::GetKey(eKeyCode::D)) {
 			if (mX <= 1366.0f) {
-				mX += 0.01f;
+				mX += speed * Time::DeltaTime();
 			}
 		}
-		if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		if (Input::GetKey(eKeyCode::W)) {
 			if (mY >= 0.0f) {
-				mY -= 0.01f;
+				mY -= speed * Time::DeltaTime();
 			}
 		}
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		if (Input::GetKey(eKeyCode::S)) {
 			if (mY <= 760) {
-				mY += 0.01f;
+				mY += speed * Time::DeltaTime();
 			}
 		}
 		if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) {
