@@ -17,6 +17,14 @@ namespace maple {
 
 		void Render();
 
+	private:
+		void clearRenderTarget();
+		void copyRenterTarget(HDC cource, HDC dest);
+		void adjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void createBuffer(UINT width, UINT height);
+		void intitializeEct();
+
+
 
 	private:
 		HWND mHwnd;
@@ -28,7 +36,6 @@ namespace maple {
 		UINT mWidth;
 		UINT mHeight;
 
-		GameObject mPlayer;
 	};
 
 }

@@ -2,12 +2,12 @@
 #include "MApplication.h"
 #include "MInput.h"
 #include "MTime.h"
+#include "MSceneManager.h"
 
 namespace maple {
 	Application::Application()
 		: mHwnd(nullptr)
 		, mHdc(nullptr)
-		, mPlayer()
 		, mWidth(0)
 		, mHeight(0)
 		, mBackHdc(nullptr)
@@ -19,30 +19,13 @@ namespace maple {
 	}
 
 	void Application::Initialize(HWND hwnd, UINT width, UINT height) {
-		this->mHwnd = hwnd;
-		this->mHdc = GetDC(hwnd);
-		this->mWidth = width;
-		this->mHeight = height;
-
-		RECT rect = { 0, 0, width, height };
-		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 		
-		SetWindowPos(mHwnd, nullptr, 30, 30, rect.right - rect.left, rect.bottom - rect.top, 0);
-		ShowWindow(mHwnd, true);
+		adjustWindowRect(hwnd, width, height);
+		createBuffer(width, height);
+		intitializeEct();
 
-		// 윈도우 해상도에 맞는 백버퍼(도화지) 생성
-		mBackBitmap = CreateCompatibleBitmap(mHdc, width, height);
+		SceneManager::Initialize();
 
-		// 백버퍼를 가리킬 DC생성
-		mBackHdc = CreateCompatibleDC(mHdc);
-
-		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
-		DeleteObject(oldBitmap);
-
-		mPlayer.SetPosition(0, 0);
-
-		Input::Initailize();
-		Time::Initialize();
 	}
 	void Application::Run() {
 		Update();
@@ -51,23 +34,62 @@ namespace maple {
 	}
 	void Application::Update() {
 		Input::Update();
-		mPlayer.Update();
 		Time::Update();
+		SceneManager::Update();
+
 	}
 	void Application::LateUpdate() {
-
+		SceneManager::LateUpdate();
 	}
 
 	void Application::Render() {
-		Rectangle(mBackHdc, -10, -10, 1600, 900);
-
-		mPlayer.Render(mBackHdc);
+		clearRenderTarget();
 		Time::Render(mBackHdc);
 
-		// BackBuffer에 있는거 원본 Buffer에 복사
-		BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
+		SceneManager::Render(mBackHdc);
+
+
+		copyRenterTarget(mBackHdc, mHdc);
 	}
 
+	void Application::clearRenderTarget() {
+		Rectangle(mBackHdc, -10, -10, 1600, 900);
 
+	}
+
+	void Application::copyRenterTarget(HDC source, HDC dest) {
+		BitBlt(dest, 0, 0, mWidth, mHeight, source, 0, 0, SRCCOPY);
+	}
+	void Application::adjustWindowRect(HWND hwnd, UINT width, UINT height) {
+		mHwnd = hwnd;
+		mHdc = GetDC(hwnd);
+		mWidth = width;
+		mHeight = height;
+
+		RECT rect = { 0, 0, (LONG)width, (LONG)height };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+		mWidth = rect.right - rect.left;
+		mHeight = rect.bottom - rect.top;
+
+		SetWindowPos(mHwnd, nullptr, 30, 30, mWidth, mHeight, 0);
+		ShowWindow(mHwnd, true);
+
+	}
+	void Application::createBuffer(UINT width, UINT height) {
+		// 윈도우 해상도에 맞는 백버퍼(도화지) 생성
+		mBackBitmap = CreateCompatibleBitmap(mHdc, width, height);
+
+		// 백버퍼를 가리킬 DC생성
+		mBackHdc = CreateCompatibleDC(mHdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
+		DeleteObject(oldBitmap);
+	}
+	void Application::intitializeEct() {
+
+		Input::Initailize();
+		Time::Initialize();
+	}
 }
 

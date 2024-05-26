@@ -5,6 +5,7 @@
 #include "Windows_Project.h"
 
 #include "..\\Maple_Engine_SOURCE\\MApplication.h"
+#include "..\\Maple_Engine_Windows\\MLoadScenes.h"
 
 maple::Application app;
 
@@ -136,8 +137,13 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 		return FALSE;
 	}
 
+
+
 	//ShowWindow(hWnd, nCmdShow);
 	//UpdateWindow(hWnd);
+
+	//load Scenes
+	maple::LoadScenes();
 
 	return TRUE;
 }
