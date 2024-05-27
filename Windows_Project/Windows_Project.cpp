@@ -5,7 +5,11 @@
 #include "Windows_Project.h"
 
 #include "..\\Maple_Engine_SOURCE\\MApplication.h"
-#include "..\\Maple_Engine_Windows\\MLoadScenes.h"
+#include "..\\Maple_Engine_Windows\\Scenes\MLoadScenes.h"
+
+
+ULONG_PTR gpToken;
+Gdiplus::GdiplusStartupInput gpsi;
 
 maple::Application app;
 
@@ -71,15 +75,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 		}
 	}
 
-
-
-	// 기본 메시지 루프입니다:
-	/*while (GetMessage(&msg, nullptr, 0, 0)) {
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) {
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-	}*/
+	Gdiplus::GdiplusShutdown(gpToken);
 
 	return (int)msg.wParam;
 }
@@ -139,9 +135,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 
 
 
-	//ShowWindow(hWnd, nCmdShow);
-	//UpdateWindow(hWnd);
-
+	ShowWindow(hWnd, nCmdShow);
+	UpdateWindow(hWnd);
+	Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 	//load Scenes
 	maple::LoadScenes();
 

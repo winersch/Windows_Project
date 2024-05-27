@@ -6,12 +6,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MPlayScene.cpp" />
-    <ClCompile Include="MLoadScenes.h" />
-    <ClCompile Include="MPlayer.cpp" />
+    <ClCompile Include="Scenes\MPlayScene.cpp" />
+    <ClCompile Include="Scenes\MLoadScenes.h" />
+    <ClCompile Include="Contents\MPlayer.cpp" />
+    <ClCompile Include="Scenes\MTitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MPlayScene.h" />
-    <ClInclude Include="MPlayer.h" />
+    <ClInclude Include="Scenes\MPlayScene.h" />
+    <ClInclude Include="Contents\MPlayer.h" />
+    <ClInclude Include="Scenes\MTitleScene.h" />
   </ItemGroup>
 </Project>

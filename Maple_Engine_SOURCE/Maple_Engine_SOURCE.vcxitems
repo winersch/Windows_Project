@@ -18,8 +18,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MSpriteRenderer.h" />
@@ -52,6 +56,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MScene.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -74,6 +81,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MTransform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="$(MSBuildThisFileDirectory)..\..\..\..\Users\ksc\Desktop\CloudOcean.png" />
+    <Image Include="$(MSBuildThisFileDirectory)CloudOcean.png" />
   </ItemGroup>
 </Project>

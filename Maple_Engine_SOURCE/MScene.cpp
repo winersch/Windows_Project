@@ -1,40 +1,66 @@
 #include "MScene.h"
 
+
 namespace maple {
 
 	Scene::Scene()
-		: mGameObjects{} {
+		: mLayers{} {
+		mLayers.resize((UINT)eLayerType::Max);
+		for (size_t i = 0; i < (UINT)eLayerType::Max; i++) {
+			mLayers[i] = new Layer();
+		}
 	}
 
 	Scene::~Scene() {
 	}
 
 	void Scene::Initialize() {
-		GameObject* go = new GameObject();
-		
-		mGameObjects.push_back(go);
+		for (Layer* layer : mLayers) {
+			if (layer == nullptr) {
+				continue;
+			}
+			layer->Initialize();
+		}
 	}
 
 	void Scene::Update() {
-		for (GameObject* gameObj : mGameObjects) {
-			gameObj->Update();
+		for (Layer* layer : mLayers) {
+			if (layer == nullptr) {
+				continue;
+			}
+			layer->Update();
 		}
 	}
 
 	void Scene::LateUpdate() {
-		for (GameObject* gameObj : mGameObjects) {
-			gameObj->LateUpdate();
+		for (Layer* layer : mLayers) {
+			if (layer == nullptr) {
+				continue;
+			}
+			layer->LateUpdate();
 		}
 	}
 
 	void Scene::Render(HDC hdc) {
-		for (GameObject* gameObj : mGameObjects) {
-			gameObj->Render(hdc);
+		for (Layer* layer : mLayers) {
+			if (layer == nullptr) {
+				continue;
+			}
+			layer->Render(hdc);
 		}
 	}
 
-	void Scene::AddGameObject(GameObject* gameObject) {
-		mGameObjects.push_back(gameObject);
+	void Scene::OnEnter() {
+	}
+
+	void Scene::OnExit() {
+	}
+
+	void Scene::AddGameObject(GameObject* gameobject, const eLayerType type) {
+		if (gameobject == nullptr) {
+			return;
+		}
+		mLayers[(UINT)type]->AddGameObject(gameobject);
 	}
 
 

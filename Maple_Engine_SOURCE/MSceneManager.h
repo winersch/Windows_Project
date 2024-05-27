@@ -23,8 +23,11 @@ namespace maple {
 			if (iter == mScene.end()) {
 				return nullptr;
 			}
+			if (mActiveScene != nullptr) {
+				mActiveScene->OnExit();
+			}
 			mActiveScene = iter->second;
-
+			mActiveScene->OnEnter();
 			return mActiveScene;
 		}
 
