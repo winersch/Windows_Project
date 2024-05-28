@@ -1,6 +1,6 @@
 #pragma once
 
-namespace maple {
+namespace maple::enums {
 	enum class eLayerType {
 		None,
 		BackGround,

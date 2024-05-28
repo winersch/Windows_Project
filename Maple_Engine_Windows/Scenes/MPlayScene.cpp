@@ -5,6 +5,7 @@
 #include "..\\Maple_Engine_SOURCE\\MSceneManager.h"
 #include "..\\Maple_Engine_Windows\Contents\MPlayer.h"
 #include "MInput.h"
+#include "MObject.h"
 
 namespace maple {
 
@@ -21,10 +22,10 @@ namespace maple {
 		Scene::Initialize();
 
 		{
-			bg = new Player();
+			/*bg = new Player();
 			Transform* tr
 				= bg->AddComponent<Transform>();
-			tr->SetPos(Vector2(0, 0));
+			tr->SetPosition(Vector2(0, 0));
 
 			tr->SetName(L"TR");
 
@@ -33,8 +34,10 @@ namespace maple {
 			sr->SetName(L"SR");
 			sr->ImageLoad(L"C:\\projects\\C\\Windows_Project\\Maple_Engine_SOURCE\\CloudOcean.png");
 
-			AddGameObject(bg, eLayerType::BackGround);
-
+			AddGameObject(bg, eLayerType::BackGround);*/
+			bg = object::Instantiate<Player>(enums::eLayerType::BackGround, Vector2(100.0f, 100.0f));
+			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+			sr->ImageLoad(L"C:\\projects\\C\\Windows_Project\\Maple_Engine_SOURCE\\CloudOcean.png");
 		}
 	}
 
@@ -61,7 +64,7 @@ namespace maple {
 	}
 
 	void PlayScene::OnExit() {
-		bg->GetComponent<Transform>()->SetPos(Vector2(0, 0));
+		bg->GetComponent<Transform>()->SetPosition(Vector2(0, 0));
 
 	}
 

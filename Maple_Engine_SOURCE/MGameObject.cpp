@@ -3,11 +3,13 @@
 #include "CommonInclude.h"
 #include "MInput.h"
 #include "MTime.h"
+#include "MTransform.h"
 
 namespace maple {
 	
 	
 	GameObject::GameObject() {
+		initializeTransform();
 
 	}
 
@@ -36,6 +38,9 @@ namespace maple {
 		for (Component* comp : mComponents) {
 			comp->Render(hdc);
 		}
+	}
+	void GameObject::initializeTransform() {
+		AddComponent<Transform>();
 	}
 }
 

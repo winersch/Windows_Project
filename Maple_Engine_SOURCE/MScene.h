@@ -20,7 +20,8 @@ namespace maple {
 		virtual void OnExit();
 
 		
-		void AddGameObject(GameObject* gameObject, const eLayerType type);
+		void AddGameObject(GameObject* gameObject, const enums::eLayerType type);
+		Layer* GetLayer(const enums::eLayerType type) { return mLayers[(UINT)type]; }
 
 	private:
 		std::vector<Layer*> mLayers;

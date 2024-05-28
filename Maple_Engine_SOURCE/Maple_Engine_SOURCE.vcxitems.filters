@@ -19,13 +19,17 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MResources.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MSpriteRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MMath.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTransform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)MApplication.h" />
@@ -49,14 +53,23 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MGameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MResources.h">
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MSpriteRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MLayer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MObject.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MEnums.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MMath.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTransform.h">
+      <Filter>Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
