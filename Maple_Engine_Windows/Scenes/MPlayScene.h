@@ -20,7 +20,7 @@ namespace maple {
 
 
 	private:
-		class Player* bg;
+		class Player* mPlayer;
 
 	};
 

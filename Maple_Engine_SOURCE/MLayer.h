@@ -19,7 +19,7 @@ namespace maple {
 		virtual void AddGameObject(GameObject* gameobject);
 
 	private:
-		enums::eLayerType mType;
+		//enums::eLayerType mType;
 		std::vector<GameObject*> mGameObjects;
 
 	};

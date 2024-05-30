@@ -6,6 +6,7 @@
 
 #include "..\\Maple_Engine_SOURCE\\MApplication.h"
 #include "..\\Maple_Engine_Windows\\Scenes\MLoadScenes.h"
+#include "..\\Maple_Engine_Windows\\Scenes\MLoadResources.h"
 
 
 ULONG_PTR gpToken;
@@ -120,11 +121,11 @@ ATOM MyRegisterClass(HINSTANCE hInstance) {
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-	const UINT width = 1366;
-	const UINT height = 768;
+	const UINT width = 672;
+	const UINT height = 846;
 
 	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, 0, 1366, 768, nullptr, nullptr, hInstance, nullptr);
+		CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
 	app.Initialize(hWnd, width, height);
 
@@ -138,6 +139,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
 	Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
+	
+	maple::LoadResources();
 	//load Scenes
 	maple::LoadScenes();
 

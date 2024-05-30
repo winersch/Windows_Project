@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Scripts\MPlayerScript.cpp" />
     <ClCompile Include="Scenes\MTitleScene.cpp" />
     <ClCompile Include="Scenes\MLoadScenes.h">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -36,6 +37,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Contents\MPlayer.h" />
+    <ClInclude Include="Scripts\MPlayerScript.h" />
+    <ClInclude Include="Scenes\MLoadResources.h" />
     <ClInclude Include="Scenes\MTitleScene.h" />
     <ClInclude Include="Scenes\MPlayScene.h" />
   </ItemGroup>

@@ -3,7 +3,7 @@
 namespace maple {
 
 	Layer::Layer()
-		:mGameObjects{}
+		: mGameObjects{}
 	{
 
 	}

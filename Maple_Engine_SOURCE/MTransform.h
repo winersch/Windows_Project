@@ -23,7 +23,7 @@ namespace maple {
 
 	private:
 		Vector2 mPosition;
-
+		enums::eComponentType mType;
 	};
 
 }

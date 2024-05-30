@@ -17,6 +17,10 @@ namespace maple {
 
 		void Render();
 
+		HDC GetHdc() { return mHdc; }
+		UINT GetWidth() { return mWidth; }
+		UINT GetHeight() { return mHeight; }
+
 	private:
 		void clearRenderTarget();
 		void copyRenterTarget(HDC cource, HDC dest);
