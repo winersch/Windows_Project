@@ -1,4 +1,5 @@
 #pragma once
+#include "CommonInclude.h"
 #include "MComponent.h"
 #include "MAnimation.h"
 
@@ -7,6 +8,30 @@ namespace maple {
 	class Animator : public Component{
 
 	public:
+
+		struct Event {
+
+			void operator = (std::function<void()> func){
+				mEvent = std::move(func);
+			}
+
+
+			void operator()(){
+				if (mEvent) {
+					mEvent;
+				}
+			}
+
+			std::function<void()> mEvent;
+
+		};
+
+		struct Events {
+			Event mStartEvent;
+			Event mCompleteEvent;
+			Event mEndEvent;
+		};
+
 		Animator();
 		~Animator();
 
@@ -27,7 +52,7 @@ namespace maple {
 		Animation* FindAnimation(const std::wstring& name);
 		void PlayAnimation(const std::wstring& name, bool loop = true);
 
-
+		bool IsCompleted() { return mActiveAnimation->IsCompleted(); }
 
 
 	private:
@@ -35,6 +60,7 @@ namespace maple {
 		Animation* mActiveAnimation;
 		bool mbLoop;
 
+		std::map<std::wstring, Events*> mEvents;
 	};
 
 }

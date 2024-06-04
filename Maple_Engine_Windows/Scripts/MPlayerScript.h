@@ -8,10 +8,11 @@ namespace maple {
 
 	public:
 		enum class eState {
-			SitDown,
+			Idle,
 			Walk,
 			Sleep,
-			Attack
+			GiveWater,
+			Attack,
 		};
 
 
@@ -24,13 +25,20 @@ namespace maple {
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
-		void SitDown();
-		void Move();
-		void Sleep();
-		void Attack();
+		void AttackEffect();
+
+
+	private:
+		void idle();
+		void move();
+		void giveWater();
+
 	private:
 		eState mState;
 		Animator* mAnimator;
+
+		
+				
 	};
 
 }

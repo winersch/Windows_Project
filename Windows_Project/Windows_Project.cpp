@@ -13,7 +13,7 @@
 ULONG_PTR gpToken;
 Gdiplus::GdiplusStartupInput gpsi;
 
-maple::Application app;
+maple::Application application;
 
 #define MAX_LOADSTRING 100
 
@@ -71,7 +71,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 				DispatchMessage(&msg);
 			}
 		} else {
-			app.Run();
+			application.Run();
 			// 메시지가 없으면 여기서 처리
 			// 게임 로직이 들어가면 된다.
 		}
@@ -128,7 +128,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
-	app.Initialize(hWnd, width, height);
+	application.Initialize(hWnd, width, height);
 
 
 	if (!hWnd) {

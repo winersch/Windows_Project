@@ -1,5 +1,6 @@
 #pragma once
 #include "CommonInclude.h"
+#include "MMath.h"
 
 namespace maple {
 	enum class eKeyState {
@@ -15,6 +16,7 @@ namespace maple {
 		A, S, D, F, G, H, J, K, L,
 		Z, X, C, V, B, N, M, 
 		Left, Right, Down, Up,
+		LButton, RButton, MButton,
 		End,
 	};
 
@@ -34,7 +36,7 @@ namespace maple {
 		static bool GetKeyUp(eKeyCode code);
 		static bool GetKey(eKeyCode code);
 
-
+		static math::Vector2 GetMousePosition(){ return mMousePosition; }
 
 	private:
 
@@ -44,9 +46,12 @@ namespace maple {
 		static bool isKeyDown(eKeyCode code);
 		static void updateKeyDown(Key& key);
 		static void updateKeyUp(Key& key);
+		static void getMousePositionByWindow();
+		static void clearKey();
 
 		//eKeyState mState[] = eKeyState::Up;
 		static std::vector<Key> Keys;
+		static math::Vector2 mMousePosition;
 	};
 
 

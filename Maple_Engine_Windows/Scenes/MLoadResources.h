@@ -12,7 +12,7 @@ namespace maple {
 		Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
 		Resources::Load<graphics::Texture>(L"Bubble", L"..\\Resources\\Bubble.png");
 		Resources::Load<graphics::Texture>(L"Gathering", L"..\\Resources\\gathering.png");
-
+		Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
 
 	}
 

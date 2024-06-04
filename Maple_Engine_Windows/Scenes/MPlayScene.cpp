@@ -49,36 +49,21 @@ namespace maple {
 
 			animator->PlayAnimation(L"CatFrontMove", true);*/
 
-			graphics::Texture* pacmanTexture = Resources::Find<graphics::Texture>(L"Cat");
-			Animator* animator = mPlayer->AddComponent<Animator>();
-			animator->CreateAnimation(L"DownWalk", pacmanTexture
-				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"RightWalk", pacmanTexture
-				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"UpWalk", pacmanTexture
-				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"LeftWalk", pacmanTexture
-				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"SitDown", pacmanTexture
-				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			animator->CreateAnimation(L"Grooming", pacmanTexture
-				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
+			Animator* playerAnimator = mPlayer->AddComponent<Animator>();
+			playerAnimator->CreateAnimation(L"Idle", playerTex
+				, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
+			playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
+				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
 
-			animator->PlayAnimation(L"SitDown", false);
+			playerAnimator->PlayAnimation(L"Idle", false);
+
+			//playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
 			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
 			mPlayer->GetComponent<Transform>()->SetRotation(0.0f);
 			mPlayer->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
-			//sr->SetTexture(pacmanTexture);
 
-			//GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::Particle);
-			//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-			//bgsr->SetSize(Vector2(1.0f, 1.0f));
-
-			//graphics::Texture* bgTex = Resources::Find<graphics::Texture>(L"Bubble");
-			//bgsr->SetTexture(bgTex);
-			
-			//cat
 
 			Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
 			cat->AddComponent<CatScript>();

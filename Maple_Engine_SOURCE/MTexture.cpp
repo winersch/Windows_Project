@@ -2,7 +2,7 @@
 #include "MApplication.h"
 
 // 해당 전역변수가 존재함을 알리는 키워드
-extern maple::Application app;
+extern maple::Application application;
 
 namespace maple::graphics {
 
@@ -38,7 +38,7 @@ namespace maple::graphics {
 			mWidth = info.bmWidth;
 			mWidth = info.bmHeight;
 
-			HDC mainDC = app.GetHdc();
+			HDC mainDC = application.GetHdc();
 			mHdc = CreateCompatibleDC(mainDC);
 			HBITMAP oldBitmap = (HBITMAP)SelectObject(mHdc, mBitmap);
 			DeleteObject(oldBitmap);

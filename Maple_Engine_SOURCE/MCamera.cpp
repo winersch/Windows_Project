@@ -3,7 +3,7 @@
 #include "MTransform.h"
 #include "MApplication.h"
 
-extern maple::Application app;
+extern maple::Application application;
 
 namespace maple {
 
@@ -24,8 +24,8 @@ namespace maple {
 	}
 
 	void Camera::Initialize() {
-		mResolution.x = app.GetWidth();
-		mResolution.y = app.GetHeight();
+		mResolution.x = application.GetWidth();
+		mResolution.y = application.GetHeight();
 	}
 
 	void Camera::Update() {

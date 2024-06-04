@@ -1,16 +1,21 @@
 #pragma once
 #include "MInput.h"
 #include "CommonInclude.h"
+#include "MMath.h"
+#include "MApplication.h"
+
+extern maple::Application application;
 
 namespace maple {
 
 	std::vector<Input::Key> Input::Keys = {};
-
+	math::Vector2 Input::mMousePosition = math::Vector2::One;
 	int ASCII[(UINT)eKeyCode::End] = {
 		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP,
+		VK_LBUTTON, VK_RBUTTON, VK_MBUTTON
 	};
 
 	void Input::Initailize() {
@@ -40,12 +45,17 @@ namespace maple {
 	}
 
 	void Input::updateKey(Input::Key& key) {
-
-		if (isKeyDown(key.KeyCode)) {
-			updateKeyDown(key);
+		if (GetFocus()) {
+			if (isKeyDown(key.KeyCode)) {
+				updateKeyDown(key);
+			} else {
+				updateKeyUp(key);
+			}
+			getMousePositionByWindow();
 		} else {
-			updateKeyUp(key);
+			clearKey();
 		}
+
 	}
 
 	bool Input::isKeyDown(eKeyCode code) {
@@ -68,6 +78,27 @@ namespace maple {
 			key.state = eKeyState::None;
 		}
 		key.bPressed = false;
+	}
+
+	void Input::getMousePositionByWindow() {
+		POINT mousePos = {};
+		GetCursorPos(&mousePos);
+		ScreenToClient(application.GetHwnd(), &mousePos);
+
+		mMousePosition.x = mousePos.x;
+		mMousePosition.y = mousePos.y;
+
+	}
+
+	void Input::clearKey() {
+		for (Key& key : Keys) {
+			if (key.state == eKeyState::Down || key.state == eKeyState::Pressed) {
+				key.state = eKeyState::Up;
+			} else if (key.state == eKeyState::Up) {
+				key.state = eKeyState::None;
+			}
+			key.bPressed = false;
+		}
 	}
 
 	bool Input::GetKeyDown(eKeyCode code) {
