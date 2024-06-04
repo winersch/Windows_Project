@@ -1,4 +1,4 @@
-#include "MPlayer.h"
+#include "MCat.h"
 #include "MInput.h"
 #include "MTransform.h"
 #include "MTime.h"
@@ -8,20 +8,22 @@ namespace maple {
 
 
 
-	void Player::Initialize() {
+
+	void Cat::Initialize() {
 		GameObject::Initialize();
 	}
 
-	void Player::Update() {
+	void Cat::Update() {
 		GameObject::Update();
 	}
 
-	void Player::LateUpdate() {
+	void Cat::LateUpdate() {
 		GameObject::LateUpdate();
 	}
 
-	void Player::Render(HDC hdc) {
+	void Cat::Render(HDC hdc) {
 		GameObject::Render(hdc);
 	}
+
 
 }

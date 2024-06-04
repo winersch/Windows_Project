@@ -7,6 +7,7 @@
 #include "..\\Maple_Engine_SOURCE\\MApplication.h"
 #include "..\\Maple_Engine_Windows\\Scenes\MLoadScenes.h"
 #include "..\\Maple_Engine_Windows\\Scenes\MLoadResources.h"
+#include <time.h>
 
 
 ULONG_PTR gpToken;
@@ -143,6 +144,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	maple::LoadResources();
 	//load Scenes
 	maple::LoadScenes();
+	int a = 0;
+	srand((unsigned int)(&a));
 
 	return TRUE;
 }

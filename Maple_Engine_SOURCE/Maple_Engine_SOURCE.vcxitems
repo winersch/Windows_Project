@@ -15,6 +15,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAnimation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MComponent.h" />
@@ -37,6 +39,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MTransform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAnimation.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MApplication.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>

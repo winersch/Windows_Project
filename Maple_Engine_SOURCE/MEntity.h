@@ -1,6 +1,8 @@
 #pragma once
 #include "CommonInclude.h"
 
+using namespace maple::math;
+
 namespace maple {
 
 	class Entity {

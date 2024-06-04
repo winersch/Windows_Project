@@ -11,6 +11,8 @@
     <ClCompile Include="Contents\MPlayer.cpp" />
     <ClCompile Include="Scenes\MTitleScene.cpp" />
     <ClCompile Include="Scripts\MPlayerScript.cpp" />
+    <ClCompile Include="Contents\MCat.cpp" />
+    <ClCompile Include="Scripts\MCatScript.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scenes\MPlayScene.h" />
@@ -18,5 +20,10 @@
     <ClInclude Include="Scenes\MTitleScene.h" />
     <ClInclude Include="Scenes\MLoadResources.h" />
     <ClInclude Include="Scripts\MPlayerScript.h" />
+    <ClInclude Include="Contents\MCat.h" />
+    <ClInclude Include="Scripts\MCatScript.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

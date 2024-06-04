@@ -5,6 +5,7 @@ namespace maple::enums {
 	enum class eComponentType {
 		Transform,
 		SpriteRenderer,
+		Animator,
 		Script,
 		Camera,
 
@@ -14,13 +15,17 @@ namespace maple::enums {
 	enum class eLayerType {
 		None,
 		BackGround,
+		Animal,
 		Player,
+		Particle,
+
 		Max = 16,
 	};
 
 	enum class eResourceType {
 		Texture,
 		AudioClip,
+		Animation,
 		Prefab,
 		End,
 
