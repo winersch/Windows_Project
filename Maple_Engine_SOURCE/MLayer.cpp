@@ -9,7 +9,10 @@ namespace maple {
 	}
 
 	Layer::~Layer() {
-
+		for (auto& iter : mGameObjects) {
+			delete iter;
+			iter = nullptr;
+		}
 	}
 
 	void Layer::Initialize() {

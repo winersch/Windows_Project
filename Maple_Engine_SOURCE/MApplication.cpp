@@ -3,6 +3,7 @@
 #include "MInput.h"
 #include "MTime.h"
 #include "MSceneManager.h"
+#include "MResources.h"
 
 namespace maple {
 	Application::Application()
@@ -50,6 +51,11 @@ namespace maple {
 
 
 		copyRenterTarget(mBackHdc, mHdc);
+	}
+
+	void Application::Release() {
+		SceneManager::Release();
+		Resources::Release();
 	}
 
 	void Application::clearRenderTarget() {

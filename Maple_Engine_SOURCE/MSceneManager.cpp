@@ -6,12 +6,8 @@ namespace maple {
 	std::map<std::wstring, Scene*> SceneManager::mScene;
 	Scene* SceneManager::mActiveScene = nullptr; // 정의 및 초기화
 
-
 	void SceneManager::Initialize() {
-	
-
 	}
-
 
 	void SceneManager::Update() {
 		mActiveScene->Update();
@@ -25,6 +21,13 @@ namespace maple {
 	void SceneManager::Render(HDC hdc) {
 		mActiveScene->Render(hdc);
 
+	}
+
+	void SceneManager::Release() {
+		for (auto& iter : mScene) {
+			delete iter.second;
+			iter.second = nullptr;
+		}
 	}
 
 

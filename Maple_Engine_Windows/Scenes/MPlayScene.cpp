@@ -34,31 +34,24 @@ namespace maple {
 			GameObject* camera =object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 440.0f));
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			renderer::mainCamera = cameraComp;
-			//camera->AddComponent<PlayerScript>();
-
 
 			mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
-			/*SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-			sr->SetSize(Vector2(3.0f, 3.0f));*/
-			mPlayer->AddComponent<PlayerScript>();
 
-			/*graphics::Texture* pacmanTexture = Resources::Find<graphics::Texture>(L"Gathering");
-			Animator* animator = mPlayer->AddComponent<Animator>();
-			animator->CreateAnimation(L"CatFrontMove", pacmanTexture
-				, Vector2(0.0f, 0.0f), Vector2(386.0f, 246.0f), Vector2::Zero, 8, 0.05f);
+			PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
-			animator->PlayAnimation(L"CatFrontMove", true);*/
 
 			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
 			Animator* playerAnimator = mPlayer->AddComponent<Animator>();
 			playerAnimator->CreateAnimation(L"Idle", playerTex
 				, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
 			playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
-				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.1f);
+				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.005f);
 
 			playerAnimator->PlayAnimation(L"Idle", false);
 
-			//playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
+			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
+
+			//playerAnimator->
 
 			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
 			mPlayer->GetComponent<Transform>()->SetRotation(0.0f);
@@ -90,6 +83,7 @@ namespace maple {
 			cat->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
 			cat->GetComponent<Transform>()->SetRotation(0.0f);
 			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			cameraComp->SetTarget(cat);
 
 			Scene::Initialize();
 		}

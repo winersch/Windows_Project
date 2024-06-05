@@ -31,12 +31,13 @@ namespace maple {
 			mActiveScene->OnEnter();
 			return mActiveScene;
 		}
+		
 		static Scene* GetActiveScene() { return mActiveScene; }
 		static void Initialize();
 		static void Update();
 		static void LateUpdate();
 		static void Render(HDC hdc);
-
+		static void Release();
 
 	private:
 		static std::map<std::wstring, Scene*> mScene;

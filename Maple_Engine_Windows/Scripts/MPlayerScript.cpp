@@ -82,7 +82,7 @@ namespace maple {
 
 
 	void PlayerScript::idle() {
-		if (Input::GetKey(eKeyCode::LButton)) {
+		if (Input::GetKey(eKeyCode::LButton) || Input::GetKey(eKeyCode::Space)) {
 			mState = PlayerScript::eState::GiveWater;
 			mAnimator->PlayAnimation(L"FrontGiveWater", false);
 

@@ -18,7 +18,7 @@ namespace maple {
 
 			void operator()(){
 				if (mEvent) {
-					mEvent;
+					mEvent();
 				}
 			}
 
@@ -27,9 +27,9 @@ namespace maple {
 		};
 
 		struct Events {
-			Event mStartEvent;
-			Event mCompleteEvent;
-			Event mEndEvent;
+			Event StartEvent;
+			Event CompleteEvent;
+			Event EndEvent;
 		};
 
 		Animator();
@@ -51,6 +51,11 @@ namespace maple {
 
 		Animation* FindAnimation(const std::wstring& name);
 		void PlayAnimation(const std::wstring& name, bool loop = true);
+
+		Events* FindEvents(const std::wstring& name);
+		std::function<void()>& GetStartEvent(const std::wstring& name);
+		std::function<void()>& GetCompleteEvent(const std::wstring& name);
+		std::function<void()>& GetEndEvent(const std::wstring& name);
 
 		bool IsCompleted() { return mActiveAnimation->IsCompleted(); }
 
