@@ -1,5 +1,6 @@
 #include "MTexture.h"
 #include "MApplication.h"
+#include "MResources.h"
 
 // 해당 전역변수가 존재함을 알리는 키워드
 extern maple::Application application;
@@ -10,8 +11,37 @@ namespace maple::graphics {
 
 
 
-	Texture::Texture() 
+	Texture* Texture::Create(const std::wstring& name, UINT width, UINT height) {
+		Texture* image = Resources::Find<Texture>(name);
+		
+		if (image != nullptr) {
+			return image;
+		}
+
+		image = new Texture();
+		image->SetName(name);
+		image->SetWidth(width);
+		image->SetHeight(height);
+
+		HDC hdc = application.GetHdc();
+		HWND hwnd = application.GetHwnd();
+
+
+		image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
+		image->mHdc = CreateCompatibleDC(hdc);
+
+		HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
+		DeleteObject(oldBitmap);
+
+		Resources::Insert(name, image);
+
+		return image;
+	}
+
+	Texture::Texture()
 		: Resource(enums::eResourceType::Texture)
+		, mbAlpha(false)
+		
 	{
 
 	}
@@ -36,7 +66,12 @@ namespace maple::graphics {
 			GetObject(mBitmap, sizeof(BITMAP), &info);
 
 			mWidth = info.bmWidth;
-			mWidth = info.bmHeight;
+			mHeight = info.bmHeight;
+			if (info.bmBitsPixel == 32) {
+				mbAlpha = true;
+			} else {
+				mbAlpha = false;
+			}
 
 			HDC mainDC = application.GetHdc();
 			mHdc = CreateCompatibleDC(mainDC);

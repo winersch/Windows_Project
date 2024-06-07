@@ -23,6 +23,10 @@ namespace maple {
 
 	}
 
+	void SceneManager::Destroy() {
+		mActiveScene->Destroy();
+	}
+
 	void SceneManager::Release() {
 		for (auto& iter : mScene) {
 			delete iter.second;

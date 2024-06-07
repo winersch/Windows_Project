@@ -9,9 +9,13 @@ namespace maple {
 	}
 
 	Layer::~Layer() {
-		for (auto& iter : mGameObjects) {
-			delete iter;
-			iter = nullptr;
+		for (auto* gameobj : mGameObjects) {
+			if (gameobj == nullptr) {
+				continue;
+			}
+
+			delete gameobj;
+			gameobj = nullptr;
 		}
 	}
 
@@ -30,6 +34,11 @@ namespace maple {
 			if (gameobj == nullptr) {
 				continue;
 			}
+			GameObject::eState state = gameobj->GetActive();
+			if (state == GameObject::eState::Paused || state == GameObject::eState::Dead) {
+				continue;
+			}
+
 			gameobj->Update();
 		}
 
@@ -40,6 +49,11 @@ namespace maple {
 			if (gameobj == nullptr) {
 				continue;
 			}
+			GameObject::eState state = gameobj->GetActive();
+			if (state == GameObject::eState::Paused || state == GameObject::eState::Dead) {
+				continue;
+			}
+
 			gameobj->LateUpdate();
 		}
 	}
@@ -49,7 +63,27 @@ namespace maple {
 			if (gameobj == nullptr) {
 				continue;
 			}
+			GameObject::eState state = gameobj->GetActive();
+			if (state == GameObject::eState::Paused || state == GameObject::eState::Dead) {
+				continue;
+			}
+
 			gameobj->Render(hdc);
+		}
+	}
+
+	void Layer::Destroy() {
+
+		for (GameObjectIter iter = mGameObjects.begin(); iter != mGameObjects.end(); ) {
+			GameObject::eState active = (*iter)->GetActive();
+			if (active == GameObject::eState::Dead) {
+				GameObject* deathObj = (*iter);
+				iter = mGameObjects.erase(iter);
+				delete deathObj;
+				deathObj = nullptr;
+			} else {
+				++iter;
+			}
 		}
 	}
 

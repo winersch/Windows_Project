@@ -32,6 +32,7 @@ namespace maple {
 		Update();
 		LateUpdate();
 		Render();
+		Destroy();
 	}
 	void Application::Update() {
 		Input::Update();
@@ -51,6 +52,10 @@ namespace maple {
 
 
 		copyRenterTarget(mBackHdc, mHdc);
+	}
+
+	void Application::Destroy() {
+		SceneManager::Destroy();
 	}
 
 	void Application::Release() {

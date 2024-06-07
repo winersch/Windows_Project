@@ -8,6 +8,13 @@ namespace maple {
 
 	class GameObject {
 	public:
+		enum class eState {
+			Active,
+			Paused,
+			Dead,
+			End,
+		};
+
 		GameObject();
 		~GameObject();
 
@@ -40,10 +47,21 @@ namespace maple {
 			return component;
 		}
 
+		void SetActive(bool power) {
+			if (power) {
+				mState = eState::Active;
+			} else {
+				mState = eState::Paused;
+			}
+		}
+		eState GetActive() { return mState; }
+		void Death() { mState = eState::Dead; }
+
 	private:
 		void initializeTransform();
 
 	private:
+		eState mState;
 		std::vector<Component*> mComponents;
 
 	};

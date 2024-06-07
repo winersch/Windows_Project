@@ -54,6 +54,15 @@ namespace maple {
 		}
 	}
 
+	void Scene::Destroy() {
+		for (auto layer : mLayers) {
+			if (layer == nullptr) {
+				continue;
+			}
+			layer->Destroy();
+		}
+	}
+
 	void Scene::OnEnter() {
 	}
 

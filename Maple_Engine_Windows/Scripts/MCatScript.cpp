@@ -5,6 +5,7 @@
 #include "MInput.h"
 #include "MGameObject.h"
 #include <time.h>
+#include "MObject.h"
 
 namespace maple {
 
@@ -12,7 +13,8 @@ namespace maple {
 		:mState(eState::SitDown)
 		,mDirection(eDirection::End)
 		, mAnimator(nullptr)
-		, mTime(0.0f){
+		, mTime(0.0f)
+		, mDeathTime(0.0f){
 	}
 
 	CatScript::~CatScript() {
@@ -23,6 +25,10 @@ namespace maple {
 	}
 
 	void CatScript::Update() {
+		mDeathTime += Time::DeltaTime();
+		if (mDeathTime > 2.0f) {
+			object::Destroy(GetOwner());
+		}
 		if (mAnimator == nullptr) {
 			mAnimator = GetOwner()->GetComponent<Animator>();
 		}

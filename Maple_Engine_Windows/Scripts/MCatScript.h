@@ -46,6 +46,7 @@ namespace maple {
 		eDirection mDirection;
 		Animator* mAnimator;
 		float mTime;
+		float mDeathTime;
 	};
 
 }
