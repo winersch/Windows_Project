@@ -27,6 +27,7 @@ namespace maple::graphics {
 		eTextureType GetTextureType() { return mType; }
 		Gdiplus::Image* GetImage() { return mImage; }
 		HBITMAP GetBitmap() { return mBitmap; }
+		bool IsAlpha() { return mbAlpha; }
 
 	private:
 		bool mbAlpha;
