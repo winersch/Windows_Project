@@ -18,6 +18,13 @@ namespace maple {
 		virtual void Destroy();
 
 		virtual void AddGameObject(GameObject* gameobject);
+		const std::vector<GameObject*> GetGameObjects() { return mGameObjects; }
+
+	private:
+		void findDeadGameObjects(OUT std::vector<GameObject*>& gameObjs);
+		void deleteGameObjects(std::vector<GameObject*> gameObjs);
+		void eraseGameObject();
+
 
 	private:
 		//enums::eLayerType mType;

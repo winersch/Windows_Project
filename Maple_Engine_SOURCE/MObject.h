@@ -31,8 +31,8 @@ namespace maple::object {
 		return gameObject;
 	}
 	
-	static void Destroy(GameObject* obj) {
-		obj->Death();
-	}
+	//static void Destroy(GameObject* obj) {
+	//	obj->death();
+	//}
 
 }

@@ -34,7 +34,7 @@ namespace maple {
 			if (gameobj == nullptr) {
 				continue;
 			}
-			GameObject::eState state = gameobj->GetActive();
+			GameObject::eState state = gameobj->GetState();
 			if (state == GameObject::eState::Paused || state == GameObject::eState::Dead) {
 				continue;
 			}
@@ -49,7 +49,7 @@ namespace maple {
 			if (gameobj == nullptr) {
 				continue;
 			}
-			GameObject::eState state = gameobj->GetActive();
+			GameObject::eState state = gameobj->GetState();
 			if (state == GameObject::eState::Paused || state == GameObject::eState::Dead) {
 				continue;
 			}
@@ -63,7 +63,7 @@ namespace maple {
 			if (gameobj == nullptr) {
 				continue;
 			}
-			GameObject::eState state = gameobj->GetActive();
+			GameObject::eState state = gameobj->GetState();
 			if (state == GameObject::eState::Paused || state == GameObject::eState::Dead) {
 				continue;
 			}
@@ -75,7 +75,7 @@ namespace maple {
 	void Layer::Destroy() {
 
 		for (GameObjectIter iter = mGameObjects.begin(); iter != mGameObjects.end(); ) {
-			GameObject::eState active = (*iter)->GetActive();
+			GameObject::eState active = (*iter)->GetState();
 			if (active == GameObject::eState::Dead) {
 				GameObject* deathObj = (*iter);
 				iter = mGameObjects.erase(iter);
@@ -92,6 +92,28 @@ namespace maple {
 			return;
 		}
 		mGameObjects.push_back(gameobject);
+	}
+
+	void Layer::findDeadGameObjects(OUT std::vector<GameObject*>& gameObjs) {
+		for (GameObject* gameObj : mGameObjects) {
+			GameObject::eState active = gameObj->GetState();
+			if (active == GameObject::eState::Dead)
+				gameObjs.push_back(gameObj);
+		}
+	}
+
+	void Layer::deleteGameObjects(std::vector<GameObject*> deleteObjs) {
+		for (GameObject* obj : deleteObjs) {
+			delete obj;
+			obj = nullptr;
+		}
+	}
+
+	void Layer::eraseGameObject() {
+		std::erase_if(mGameObjects,
+			[](GameObject* gameObj) {
+				return (gameObj)->IsDead();
+			});
 	}
 
 }

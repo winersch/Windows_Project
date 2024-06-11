@@ -13,8 +13,11 @@ namespace maple {
 		:mState(eState::SitDown)
 		,mDirection(eDirection::End)
 		, mAnimator(nullptr)
+		, mPlayer(nullptr)
 		, mTime(0.0f)
-		, mDeathTime(0.0f){
+		, mDeathTime(0.0f)
+		, mDest(Vector2::Zero)
+		, mRadian(0.0f) {
 	}
 
 	CatScript::~CatScript() {
@@ -27,7 +30,7 @@ namespace maple {
 	void CatScript::Update() {
 		mDeathTime += Time::DeltaTime();
 		if (mDeathTime > 2.0f) {
-			object::Destroy(GetOwner());
+			//object::Destroy(GetOwner());
 		}
 		if (mAnimator == nullptr) {
 			mAnimator = GetOwner()->GetComponent<Animator>();
@@ -64,15 +67,47 @@ namespace maple {
 	void CatScript::sitDown() {
 
 		mTime += Time::DeltaTime();
-		if (mTime > 2.0f) {
+		
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+		
+		
+		//마우스 위치 방향으로 회전후 마우스 위치 이동 ( 벡터의 뺄셈 활용 )
+		//Transform* plTr = mPlayer->GetComponent<Transform>();
+		//Vector2 dest = mDest - plTr->GetPosition();
+		//dest.normalize();
+
+		//float rotDegree = Vector2::Dot(dest, Vector2::Right); //cos세타
+		//rotDegree = acosf(rotDegree);
+
+		//rotDegree = ConvertDegree(rotDegree);
+
+		//pos += dest * (100.0f * Time::DeltaTime());
+
+		
+
+		// 삼각함수를 위한 이동
+		//
+		//mRadian += Time::DeltaTime() * 10;
+
+		//pos += Vector2(1.0f, cosf(mRadian) * (100.0f * Time::DeltaTime()));
+
+		// 
+		
+		
+		
+		tr->SetPosition(pos);
+
+
+		/*if (mTime > 2.0f) {
 			mTime = 0.0f;
 			mState = CatScript::eState::Walk;
 			int direction = rand() % 4;
 			mDirection = (eDirection)direction;
 			playWalkAnimationByDirection(mDirection);
-		}
+		}*/
 	}
-
+	
 	void CatScript::move() {
 		mTime += Time::DeltaTime();
 		if (mTime > 1.0f) {

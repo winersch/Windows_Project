@@ -10,9 +10,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MComponent.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -57,6 +54,19 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MAnimation.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MComponent.cpp">
+      <Filter>Component\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MCollider.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MBoxCollider2D.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MCircleCollider2D.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MCollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -70,9 +80,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MScene.h">
       <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MComponent.h">
-      <Filter>Component</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MGameObject.h">
       <Filter>GameObject</Filter>
@@ -124,6 +131,19 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MAnimation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MComponent.h">
+      <Filter>Component\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MCollider.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MBoxCollider2D.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MCircleCollider2D.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MCollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -167,6 +187,12 @@
     </Filter>
     <Filter Include="Renderer">
       <UniqueIdentifier>{2a1dc42b-829b-4044-a770-54e72e313d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Component">
+      <UniqueIdentifier>{77b8d7c1-a51c-4234-b4b9-7f9e1b0ec1a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{a6f6707e-d583-46ef-9b48-ffd60162c4bc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

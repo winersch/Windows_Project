@@ -7,10 +7,11 @@
 #include <algorithm>
 #include <string>
 #include <map>
+#include <bitset>
 #include <functional>
 #include <filesystem>
+#include <math.h>
 
-#include "MMath.h"
 
 #include <mmsystem.h>
 #include <dinput.h>
@@ -21,3 +22,4 @@
 #pragma comment(lib, "gdiplus.lib")
 
 #include "MEnums.h"
+#include "MMath.h"

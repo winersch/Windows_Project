@@ -46,7 +46,7 @@ namespace maple {
 			}
 			return component;
 		}
-
+		eState GetState() { return mState; }
 		void SetActive(bool power) {
 			if (power) {
 				mState = eState::Active;
@@ -54,11 +54,12 @@ namespace maple {
 				mState = eState::Paused;
 			}
 		}
-		eState GetActive() { return mState; }
-		void Death() { mState = eState::Dead; }
+		bool IsActive() { return mState == eState::Active; }
+		bool IsDead() { return mState == eState::Dead; }
 
 	private:
 		void initializeTransform();
+		void death() { mState = eState::Dead; }
 
 	private:
 		eState mState;

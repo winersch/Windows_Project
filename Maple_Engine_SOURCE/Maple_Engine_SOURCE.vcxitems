@@ -18,7 +18,11 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MCircleCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MCollider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MEnums.h" />
@@ -47,7 +51,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MCircleCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MCollider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MEntity.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>

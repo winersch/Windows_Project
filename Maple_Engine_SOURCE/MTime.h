@@ -12,7 +12,7 @@ namespace maple {
 		static void Update();
 		static void Render(HDC hdc);
 
-		static float DeltaTime() {
+		__forceinline static float DeltaTime() {
 			return DeltaTimeValue;
 		};
 

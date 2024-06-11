@@ -14,6 +14,8 @@
 #include "MAnimator.h"
 #include "..\\Maple_Engine_Windows\Contents\MCat.h"
 #include "..\\Maple_Engine_Windows\Scripts\MCatScript.h"
+#include "MBoxCollider2D.h"
+#include "MCollisionManager.h"
 
 namespace maple {
 
@@ -30,6 +32,8 @@ namespace maple {
 	void PlayScene::Initialize() {
 
 		{
+			CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+
 			// main camera
 			GameObject* camera =object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 440.0f));
 			Camera* cameraComp = camera->AddComponent<Camera>();
@@ -38,6 +42,9 @@ namespace maple {
 			mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
 
 			PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
+
+			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+			collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 
 			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
@@ -53,41 +60,45 @@ namespace maple {
 
 			//playerAnimator->
 
-			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
-			mPlayer->GetComponent<Transform>()->SetRotation(0.0f);
-			mPlayer->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
+			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 250.0f));
+			//mPlayer->GetComponent<Transform>()->SetRotation(0.0f);
+			//mPlayer->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
 
 
+			///CAT
 			Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
+			//cat->SetActive(true);
 			cat->AddComponent<CatScript>();
-
-			graphics::Texture* catTexture = Resources::Find<graphics::Texture>(L"Cat");
+			//cameraComp->SetTarget(cat);
+			graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
 			Animator* catAnimator = cat->AddComponent<Animator>();
-			/*catAnimator->CreateAnimation(L"DownWalk", catTexture
-				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"RightWalk", catTexture
-				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"UpWalk", catTexture
-				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"LeftWalk", catTexture
-				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"SitDown", catTexture
-				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"Grooming", catTexture
-				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"LayDown", catTexture
-				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);*/
 
+			BoxCollider2D* boxCatCollider = cat->AddComponent<BoxCollider2D>();
 
-			catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\Resources\\Mushroom", Vector2::Zero, 0.2f);
-			catAnimator->PlayAnimation(L"MushroomIdle", true);
+			boxCatCollider->SetOffset(Vector2(-50.0f, -50.0f));
+
+			//catAnimator->CreateAnimation(L"DownWalk", catTex
+			//	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"RightWalk", catTex
+			//	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"UpWalk", catTex
+			//	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"LeftWalk", catTex
+			//	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"SitDown", catTex
+			//	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"Grooming", catTex
+			//	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			//catAnimator->CreateAnimation(L"LayDown", catTex
+			//	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
 			//catAnimator->PlayAnimation(L"SitDown", false);
+			catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\Resources\\Mushroom", Vector2::Zero, 0.1f);
 
-			cat->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
-			cat->GetComponent<Transform>()->SetRotation(0.0f);
-			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
-			//cameraComp->SetTarget(cat);
+			catAnimator->PlayAnimation(L"MushroomIdle", true);
+
+			cat->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
+			cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 
 			Scene::Initialize();
 		}

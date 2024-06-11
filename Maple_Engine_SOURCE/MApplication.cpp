@@ -4,6 +4,7 @@
 #include "MTime.h"
 #include "MSceneManager.h"
 #include "MResources.h"
+#include "MCollisionManager.h"
 
 namespace maple {
 	Application::Application()
@@ -25,6 +26,7 @@ namespace maple {
 		createBuffer(width, height);
 		intitializeEct();
 
+		CollisionManager::Initialize();
 		SceneManager::Initialize();
 
 	}
@@ -37,10 +39,12 @@ namespace maple {
 	void Application::Update() {
 		Input::Update();
 		Time::Update();
+		CollisionManager::Update();
 		SceneManager::Update();
 
 	}
 	void Application::LateUpdate() {
+		CollisionManager::LateUpdate();
 		SceneManager::LateUpdate();
 	}
 
@@ -48,6 +52,7 @@ namespace maple {
 		clearRenderTarget();
 		Time::Render(mBackHdc);
 
+		CollisionManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 
 
@@ -64,7 +69,14 @@ namespace maple {
 	}
 
 	void Application::clearRenderTarget() {
-		Rectangle(mBackHdc, -10, -10, 1600, 900);
+		//clear
+		HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(128, 128, 128));
+		HBRUSH oldBrush = (HBRUSH)SelectObject(mBackHdc, grayBrush);
+
+		Rectangle(mBackHdc, -1, -1, 1601, 901);
+
+		(HBRUSH)SelectObject(mBackHdc, oldBrush);
+		DeleteObject(grayBrush);
 
 	}
 
