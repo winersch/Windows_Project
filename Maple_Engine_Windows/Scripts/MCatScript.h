@@ -34,6 +34,10 @@ namespace maple {
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
+		void OnCollisionEnter(Collider* other) override;
+		void OnCollisionStay(Collider* other) override;
+		void OnCollisionExit(Collider* other) override;
+
 		void SetPlayer(GameObject* player) { mPlayer = player; }
 		Vector2 mDest;
 

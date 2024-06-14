@@ -74,17 +74,10 @@ namespace maple {
 
 	void Layer::Destroy() {
 
-		for (GameObjectIter iter = mGameObjects.begin(); iter != mGameObjects.end(); ) {
-			GameObject::eState active = (*iter)->GetState();
-			if (active == GameObject::eState::Dead) {
-				GameObject* deathObj = (*iter);
-				iter = mGameObjects.erase(iter);
-				delete deathObj;
-				deathObj = nullptr;
-			} else {
-				++iter;
-			}
-		}
+		std::vector<GameObject*> deleteObjects = {};
+		findDeadGameObjects(deleteObjects);
+		eraseDeadGameObject();
+		deleteGameObjects(deleteObjects);
 	}
 
 	void Layer::AddGameObject(GameObject* gameobject) {
@@ -92,6 +85,13 @@ namespace maple {
 			return;
 		}
 		mGameObjects.push_back(gameobject);
+	}
+	void Layer::EraseGameObject(GameObject* eraseGameObj) {
+		// std::erase() iter넣어줘서 해당 이터레이와 같은 객체 삭제
+		std::erase_if(mGameObjects,
+			[=](GameObject* gameObj) {
+				return gameObj == eraseGameObj;
+			});
 	}
 
 	void Layer::findDeadGameObjects(OUT std::vector<GameObject*>& gameObjs) {
@@ -109,7 +109,7 @@ namespace maple {
 		}
 	}
 
-	void Layer::eraseGameObject() {
+	void Layer::eraseDeadGameObject() {
 		std::erase_if(mGameObjects,
 			[](GameObject* gameObj) {
 				return (gameObj)->IsDead();

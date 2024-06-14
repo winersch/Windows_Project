@@ -2,6 +2,7 @@
 #include "CommonInclude.h"
 #include "MComponent.h"
 #include "MScript.h"
+#include "MCollider.h"
 
 namespace maple {
 
@@ -56,6 +57,8 @@ namespace maple {
 		}
 		bool IsActive() { return mState == eState::Active; }
 		bool IsDead() { return mState == eState::Dead; }
+		void SetLayerType(eLayerType layerType) { mLayerType = layerType; }
+		eLayerType GetLayerType() { return mLayerType; }
 
 	private:
 		void initializeTransform();
@@ -64,7 +67,7 @@ namespace maple {
 	private:
 		eState mState;
 		std::vector<Component*> mComponents;
-
+		eLayerType mLayerType;
 	};
 
 }

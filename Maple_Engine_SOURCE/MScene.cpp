@@ -63,11 +63,7 @@ namespace maple {
 		}
 	}
 
-	void Scene::OnEnter() {
-	}
-
-	void Scene::OnExit() {
-	}
+	
 
 	void Scene::AddGameObject(GameObject* gameobject, const enums::eLayerType type) {
 		if (gameobject == nullptr) {
@@ -76,7 +72,24 @@ namespace maple {
 		mLayers[(UINT)type]->AddGameObject(gameobject);
 	}
 
+	void Scene::EraseGameObject(GameObject* gameObj) {
+		eLayerType layerType = gameObj->GetLayerType();
+		mLayers[(UINT)layerType]->EraseGameObject(gameObj);
+	}
 
+	void Scene::createLayers() {
+		mLayers.resize((UINT)enums::eLayerType::Max);
+		for (size_t i = 0; i < (UINT)enums::eLayerType::Max; i++) {
+			mLayers[i] = new Layer();
+		}
+	}
+	
+	
+	void Scene::OnEnter() {
+	}
+
+	void Scene::OnExit() {
+	}
 }
 
 

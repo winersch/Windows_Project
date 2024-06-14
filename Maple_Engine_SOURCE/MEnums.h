@@ -16,6 +16,7 @@ namespace maple::enums {
 	enum class eLayerType {
 		None,
 		BackGround,
+		Tile,
 		Animal,
 		Player,
 		Particle,
@@ -30,5 +31,11 @@ namespace maple::enums {
 		Prefab,
 		End,
 
+	};
+
+	enum class eColliderType {
+		Circle2D,
+		Rect2D,
+		End,
 	};
 }

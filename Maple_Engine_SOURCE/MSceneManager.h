@@ -18,21 +18,10 @@ namespace maple {
 			return scene;
 		}
 
-		static Scene* LoadScene(const std::wstring& name) {
-			if (mActiveScene) {
-				mActiveScene->OnExit();
-			}
-			std::map <std::wstring, Scene*>::iterator iter
-				= mScene.find(name);
-			if (iter == mScene.end()) {
-				return nullptr;
-			}
-			mActiveScene = iter->second;
-			mActiveScene->OnEnter();
-			return mActiveScene;
-		}
+		static Scene* LoadScene(const std::wstring& name);
 		
 		static Scene* GetActiveScene() { return mActiveScene; }
+		static Scene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
 		static void Initialize();
 		static void Update();
 		static void LateUpdate();
@@ -43,7 +32,7 @@ namespace maple {
 	private:
 		static std::map<std::wstring, Scene*> mScene;
 		static Scene* mActiveScene;
-
+		static Scene* mDontDestroyOnLoad;
 
 	};
 

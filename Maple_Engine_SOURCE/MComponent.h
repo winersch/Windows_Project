@@ -3,6 +3,8 @@
 
 namespace maple {
 
+	using namespace enums;
+
 	class GameObject;
 
 	class Component : public Entity {

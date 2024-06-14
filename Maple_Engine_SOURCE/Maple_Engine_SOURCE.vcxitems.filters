@@ -66,7 +66,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MCircleCollider2D.cpp">
       <Filter>Component\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MCollisionManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MCollisionManager.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MObject.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MDontDestroyOnLoad.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MTilemapRenderer.cpp">
+      <Filter>Component\TileMapRenderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -143,7 +154,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MCircleCollider2D.h">
       <Filter>Component\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MCollisionManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MCollisionManager.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MDontDestroyOnLoad.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MTilemapRenderer.h">
+      <Filter>Component\TileMapRenderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -193,6 +212,9 @@
     </Filter>
     <Filter Include="Component\Collider">
       <UniqueIdentifier>{a6f6707e-d583-46ef-9b48-ffd60162c4bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\TileMapRenderer">
+      <UniqueIdentifier>{8971115d-c856-4769-a293-89bb96972e33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

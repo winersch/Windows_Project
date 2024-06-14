@@ -87,6 +87,21 @@ namespace maple {
 
 	}
 
+	void PlayerScript::OnCollisionEnter(Collider* other) {
+		float ny = rand() % 672;
+		float nx = rand() % 486;
+		other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(nx, ny));
+	}
+
+	void PlayerScript::OnCollisionStay(Collider* other) {
+		float ny = rand() % 672;
+		float nx = rand() % 486;
+		other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(nx, ny));
+	}
+
+	void PlayerScript::OnCollisionExit(Collider* other) {
+
+	}
 
 	void PlayerScript::idle() {
 		if (Input::GetKey(eKeyCode::LButton) || Input::GetKey(eKeyCode::Space)) {
@@ -132,18 +147,19 @@ namespace maple {
 		}
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		float speed = 3.0f;
 
 		if (Input::GetKey(eKeyCode::D)) {
-			pos.x += 100.0f * Time::DeltaTime();
+			pos.x += 100.0f * Time::DeltaTime() * speed;
 		}
 		if (Input::GetKey(eKeyCode::A)) {
-			pos.x -= 100.0f * Time::DeltaTime();
+			pos.x -= 100.0f * Time::DeltaTime() * speed;
 		}
 		if (Input::GetKey(eKeyCode::W)) {
-			pos.y -= 100.0f * Time::DeltaTime();
+			pos.y -= 100.0f * Time::DeltaTime() * speed;
 		}
 		if (Input::GetKey(eKeyCode::S)) {
-			pos.y += 100.0f * Time::DeltaTime();
+			pos.y += 100.0f * Time::DeltaTime() * speed;
 		}
 
 		tr->SetPosition(pos);

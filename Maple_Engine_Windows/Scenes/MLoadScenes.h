@@ -3,6 +3,7 @@
 
 #include "MPlayScene.h"
 #include "MTitleScene.h"
+#include "MToolScene.h"
 
 //#ifdef _DEBUG
 //#pragma comment(lib, "..\\x64\\Debug\\Maple_Engine_Windows.lib")
@@ -17,9 +18,11 @@ namespace maple {
 
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
 		SceneManager::CreateScene<TitleScene>(L"TitleScene");
-		
 		SceneManager::LoadScene(L"PlayScene");
 
 
+		SceneManager::CreateScene<ToolScene>(L"ToolScene");
+
+		SceneManager::LoadScene(L"ToolScene");
 	}
 }
