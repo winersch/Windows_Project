@@ -18,12 +18,15 @@ namespace maple {
 
 		void SetTexture(graphics::Texture* texture) { mTexture = texture; }
 		void SetSize(math::Vector2 size) { mSize = size; }
-
+		
+	public:
+		static Vector2 TileSize;
 	private:
 		Vector2 mTileSize;
 		graphics::Texture* mTexture;
 		Vector2 mSize;
 		Vector2 mIndex;
+		
 
 	};
 

@@ -5,8 +5,13 @@
 #include "Windows_Project.h"
 
 #include "..\\Maple_Engine_SOURCE\\MApplication.h"
+#include "..\\Maple_Engine_SOURCE\\MResources.h"
+#include "..\\Maple_Engine_SOURCE\\MTexture.h"
+
 #include "..\\Maple_Engine_Windows\\Scenes\MLoadScenes.h"
 #include "..\\Maple_Engine_Windows\\Scenes\MLoadResources.h"
+#include "..\\Maple_Engine_Windows\\Scenes\MToolScene.h"
+
 #include <time.h>
 
 
@@ -133,7 +138,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 		CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
 	HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
+		0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
 	application.Initialize(hWnd, width, height);
 
@@ -148,8 +153,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	UpdateWindow(hWnd);
 
 	// 타일맵툴 윈도우
-	ShowWindow(ToolHWnd, nCmdShow);
-	UpdateWindow(ToolHWnd);
+	//ShowWindow(ToolHWnd, nCmdShow);
+	//UpdateWindow(ToolHWnd);
 
 	Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
@@ -159,6 +164,22 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	int a = 0;
 	srand((unsigned int)(&a));
 
+
+	//Tile 윈도우 크기 조정
+	maple::graphics::Texture* texture
+		= maple::Resources::Find<maple::graphics::Texture>(L"SpringFloor");
+
+	RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
+	AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+	UINT toolWidth = rect.right - rect.left;
+	UINT toolHeight = rect.bottom - rect.top;
+
+	SetWindowPos(ToolHWnd, nullptr, width+50, 0, toolWidth, toolHeight, 0);
+	ShowWindow(ToolHWnd, true);
+
+
+	UpdateWindow(ToolHWnd);
 	return TRUE;
 }
 
@@ -172,6 +193,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 //  WM_DESTROY  - 종료 메시지를 게시하고 반환합니다.
 //
 //
+
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	switch (message) {
 		case WM_COMMAND:
@@ -207,40 +230,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	return 0;
 }
 
-LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
-	switch (message) {
-		case WM_COMMAND:
-		{
-			int wmId = LOWORD(wParam);
-			// 메뉴 선택을 구문 분석합니다:
-			switch (wmId) {
-				case IDM_ABOUT:
-					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-					break;
-				case IDM_EXIT:
-					DestroyWindow(hWnd);
-					break;
-				default:
-					return DefWindowProc(hWnd, message, wParam, lParam);
-			}
-		}
-		break;
-		case WM_PAINT:
-		{
-			PAINTSTRUCT ps;
-			HDC hdc = BeginPaint(hWnd, &ps);
-
-			EndPaint(hWnd, &ps);
-		}
-		break;
-		case WM_DESTROY:
-			PostQuitMessage(0);
-			break;
-
-		default:
-			return DefWindowProc(hWnd, message, wParam, lParam);
-	}
-}
+//LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+//	switch (message) {
+//		case WM_COMMAND:
+//		{
+//			int wmId = LOWORD(wParam);
+//			// 메뉴 선택을 구문 분석합니다:
+//			switch (wmId) {
+//				case IDM_ABOUT:
+//					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+//					break;
+//				case IDM_EXIT:
+//					DestroyWindow(hWnd);
+//					break;
+//				default:
+//					return DefWindowProc(hWnd, message, wParam, lParam);
+//			}
+//		}
+//		break;
+//		case WM_PAINT:
+//		{
+//			PAINTSTRUCT ps;
+//			HDC hdc = BeginPaint(hWnd, &ps);
+//
+//			EndPaint(hWnd, &ps);
+//		}
+//		break;
+//		case WM_DESTROY:
+//			PostQuitMessage(0);
+//			break;
+//
+//		default:
+//			return DefWindowProc(hWnd, message, wParam, lParam);
+//	}
+//}
 
 // 정보 대화 상자의 메시지 처리기입니다.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam) {
