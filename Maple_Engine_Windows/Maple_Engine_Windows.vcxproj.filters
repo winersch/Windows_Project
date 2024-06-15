@@ -15,6 +15,7 @@
     <ClCompile Include="Scripts\MCatScript.cpp" />
     <ClCompile Include="Scenes\MToolScene.cpp" />
     <ClCompile Include="Contents\MTile.cpp" />
+    <ClCompile Include="Scripts\MCameraScript.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scenes\MPlayScene.h" />
@@ -26,6 +27,7 @@
     <ClInclude Include="Scripts\MCatScript.h" />
     <ClInclude Include="Scenes\MToolScene.h" />
     <ClInclude Include="Contents\MTile.h" />
+    <ClInclude Include="Scripts\MCameraScript.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

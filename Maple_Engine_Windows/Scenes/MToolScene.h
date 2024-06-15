@@ -1,5 +1,6 @@
 #pragma once
 #include "..\\Maple_Engine_SOURCE\\MScene.h"
+#include "..\\Maple_Engine_Windows\\Contents\\MTile.h"
 
 namespace maple {
 
@@ -15,6 +16,13 @@ namespace maple {
 
 		void OnEnter() override;
 		void OnExit()  override;
+
+		void Save();
+		void Load();
+
+	private:
+		std::vector<Tile*> mTiles;
+
 	};
 
 
