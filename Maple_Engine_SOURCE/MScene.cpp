@@ -1,5 +1,5 @@
 #include "MScene.h"
-
+#include "MCollisionManager.h"
 
 namespace maple {
 
@@ -89,6 +89,7 @@ namespace maple {
 	}
 
 	void Scene::OnExit() {
+		CollisionManager::Clear();
 	}
 }
 

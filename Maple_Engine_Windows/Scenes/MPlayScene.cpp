@@ -33,38 +33,39 @@ namespace maple {
 
 	void PlayScene::Initialize() {
 
-		FILE* pFile = nullptr;
-		_wfopen_s(&pFile, L"..\\Resources\\Home", L"rb");
+		//FILE* pFile = nullptr;
+		//_wfopen_s(&pFile, L"..\\Resources\\Home", L"rb");
 
-		while (true) {
-			int idxX = 0;
-			int idxY = 0;
+		//while (true) {
+		//	int idxX = 0;
+		//	int idxY = 0;
 
-			int posX = 0;
-			int posY = 0;
+		//	int posX = 0;
+		//	int posY = 0;
 
 
-			if (fread(&idxX, sizeof(int), 1, pFile) == NULL)
-				break;
-			if (fread(&idxY, sizeof(int), 1, pFile) == NULL)
-				break;
-			if (fread(&posX, sizeof(int), 1, pFile) == NULL)
-				break;
-			if (fread(&posY, sizeof(int), 1, pFile) == NULL)
-				break;
+		//	if (fread(&idxX, sizeof(int), 1, pFile) == NULL)
+		//		break;
+		//	if (fread(&idxY, sizeof(int), 1, pFile) == NULL)
+		//		break;
+		//	if (fread(&posX, sizeof(int), 1, pFile) == NULL)
+		//		break;
+		//	if (fread(&posY, sizeof(int), 1, pFile) == NULL)
+		//		break;
 
-			Tile* tile = object::Instantiate<Tile>(eLayerType::Tile, Vector2(posX, posY));
-			TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
-			tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
-			tmr->SetIndex(Vector2(idxX, idxY));
+		//	Tile* tile = object::Instantiate<Tile>(eLayerType::Tile, Vector2(posX, posY));
+		//	TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
+		//	tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
+		//	tmr->SetIndex(Vector2(idxX, idxY));
 
-			//mTiles.push_back(tile);
-		}
+		//	//mTiles.push_back(tile);
+		//}
 
-		fclose(pFile);
+		//fclose(pFile);
+
 
 		{
-			CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+			
 
 			// main camera
 			GameObject* camera =object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 440.0f));
@@ -72,7 +73,7 @@ namespace maple {
 			renderer::mainCamera = cameraComp;
 
 			mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
-			//object::DontDestroyOnLoad(mPlayer)
+			object::DontDestroyOnLoad(mPlayer);
 
 			PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
@@ -164,9 +165,12 @@ namespace maple {
 	}
 
 	void PlayScene::OnEnter() {
+		Scene::OnEnter();
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
 	}
 
 	void PlayScene::OnExit() {
+		Scene::OnExit();
 		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(0, 0));
 
 	}
