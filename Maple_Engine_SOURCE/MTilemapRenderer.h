@@ -20,6 +20,7 @@ namespace maple {
 		void SetSize(math::Vector2 size) { mSize = size; }
 		Vector2 GetIndex() { return mIndex; }
 		void SetIndex(Vector2 index) { mIndex = index; }
+		void Clear() {}
 
 	public:
 		static Vector2 TileSize;

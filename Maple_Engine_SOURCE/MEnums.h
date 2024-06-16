@@ -5,6 +5,7 @@ namespace maple::enums {
 	enum class eComponentType {
 		Transform,
 		Collider,
+		Rigidbody,
 		Script,
 		SpriteRenderer,
 		Animator,
@@ -19,6 +20,7 @@ namespace maple::enums {
 		Tile,
 		Animal,
 		Player,
+		Floor,
 		Particle,
 
 		Max = 16,
@@ -36,6 +38,10 @@ namespace maple::enums {
 	enum class eColliderType {
 		Circle2D,
 		Rect2D,
+		End,
+	};
+
+	enum class eUIType {
 		End,
 	};
 }

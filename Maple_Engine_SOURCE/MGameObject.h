@@ -7,7 +7,7 @@
 namespace maple {
 
 
-	class GameObject {
+	class GameObject : public Entity{
 	public:
 		enum class eState {
 			Active,

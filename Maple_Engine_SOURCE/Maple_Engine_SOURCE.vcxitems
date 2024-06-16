@@ -35,6 +35,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MRigidbody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MScript.h" />
@@ -43,6 +44,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MTilemapRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MAnimation.cpp" />
@@ -84,6 +87,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MRigidbody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MScene.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -107,6 +111,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="$(MSBuildThisFileDirectory)CloudOcean.png" />

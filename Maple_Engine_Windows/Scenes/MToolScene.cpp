@@ -24,9 +24,6 @@ namespace maple {
 
 		renderer::mainCamera = cameraComp;
 
-		//Tile* tile = object::Instantiate<Tile>(eLayerType::Tile);
-		//TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
-		//tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
 
 		Scene::Initialize();
 	}
@@ -38,24 +35,7 @@ namespace maple {
 	void ToolScene::LateUpdate() {
 		Scene::LateUpdate();
 		if (Input::GetKeyDown(eKeyCode::LButton)) {
-			Vector2 pos = Input::GetMousePosition();
-
-			pos = renderer::mainCamera->CaluateTilePosition(pos);
-
-			if (pos.x >= 0.0f && pos.y >= 0.0f) {
-				int idxX = pos.x / TilemapRenderer::TileSize.x;
-				int idxY = pos.y / TilemapRenderer::TileSize.y;
-
-				Tile* tile = object::Instantiate<Tile>(eLayerType::Tile);
-				TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
-				tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
-				tmr->SetIndex(TilemapRenderer::SelectedIndex);
-
-				tile->SetIndexPosition(idxX, idxY);
-				mTiles.push_back(tile);
-			} else {
-				//
-			}
+			createTileObject();
 		}
 
 		if (Input::GetKeyDown(eKeyCode::S)) {
@@ -69,26 +49,7 @@ namespace maple {
 
 	void ToolScene::Render(HDC hdc) {
 		Scene::Render(hdc);
-
-		for (size_t i = 0; i < 50; i++) {
-			Vector2 pos = renderer::mainCamera->CalculatePosition
-			(
-				Vector2(TilemapRenderer::TileSize.x * i, 0.0f)
-			);
-
-			MoveToEx(hdc, pos.x, 0, NULL);
-			LineTo(hdc, pos.x, 1000);
-		}
-
-		for (size_t i = 0; i < 50; i++) {
-			Vector2 pos = renderer::mainCamera->CalculatePosition
-			(
-				Vector2(0.0f, TilemapRenderer::TileSize.y * i)
-			);
-
-			MoveToEx(hdc, 0, pos.y, NULL);
-			LineTo(hdc, 1000, pos.y);
-		}
+		renderGreed(hdc);
 	}
 
 	void ToolScene::OnEnter() {
@@ -169,13 +130,17 @@ namespace maple {
 		FILE* pFile = nullptr;
 		_wfopen_s(&pFile, szFilePath, L"rb");
 
+		for (auto a : mTiles) {
+			a->SetActive(false);
+		}
+
+
 		while (true) {
 			int idxX = 0;
 			int idxY = 0;
 
 			int posX = 0;
 			int posY = 0;
-
 
 			if (fread(&idxX, sizeof(int), 1, pFile) == NULL)
 				break;
@@ -195,6 +160,45 @@ namespace maple {
 		}
 
 		fclose(pFile);
+	}
+	void ToolScene::renderGreed(HDC hdc) {
+		for (size_t i = 0; i < 50; i++) {
+			Vector2 pos = renderer::mainCamera->CalculatePosition
+			(
+				Vector2(TilemapRenderer::TileSize.x * i, 0.0f)
+			);
+
+			MoveToEx(hdc, pos.x, 0, NULL);
+			LineTo(hdc, pos.x, 1000);
+		}
+		for (size_t i = 0; i < 50; i++) {
+			Vector2 pos = renderer::mainCamera->CalculatePosition
+			(
+				Vector2(0.0f, TilemapRenderer::TileSize.y * i)
+			);
+
+			MoveToEx(hdc, 0, pos.y, NULL);
+			LineTo(hdc, 1000, pos.y);
+		}
+	}
+	void ToolScene::createTileObject() {
+		Vector2 pos = Input::GetMousePosition();
+		pos = renderer::mainCamera->CaluateTilePosition(pos);
+
+		if (pos.x >= 0.0f && pos.y >= 0.0f) {
+			int idxX = pos.x / TilemapRenderer::TileSize.x;
+			int idxY = pos.y / TilemapRenderer::TileSize.y;
+
+			Tile* tile = object::Instantiate<Tile>(eLayerType::Tile);
+			TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
+			tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
+			tmr->SetIndex(TilemapRenderer::SelectedIndex);
+
+			tile->SetIndexPosition(idxX, idxY);
+			mTiles.push_back(tile);
+		} else {
+			//
+		}
 	}
 }
 

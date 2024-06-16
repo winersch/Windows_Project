@@ -16,6 +16,8 @@
     <ClCompile Include="Scenes\MToolScene.cpp" />
     <ClCompile Include="Contents\MTile.cpp" />
     <ClCompile Include="Scripts\MCameraScript.cpp" />
+    <ClCompile Include="Contents\MFloor.cpp" />
+    <ClCompile Include="Scripts\MFloorScript.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scenes\MPlayScene.h" />
@@ -28,6 +30,8 @@
     <ClInclude Include="Scenes\MToolScene.h" />
     <ClInclude Include="Contents\MTile.h" />
     <ClInclude Include="Scripts\MCameraScript.h" />
+    <ClInclude Include="Contents\MFloor.h" />
+    <ClInclude Include="Scripts\MFloorScript.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

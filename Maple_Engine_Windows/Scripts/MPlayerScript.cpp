@@ -8,6 +8,7 @@
 #include "MCatScript.h"
 #include "MObject.h"
 #include "..\\Maple_Engine_Windows\\Contents\\MCat.h"
+#include "MRigidbody.h"
 
 namespace maple {
 
@@ -90,13 +91,14 @@ namespace maple {
 	void PlayerScript::OnCollisionEnter(Collider* other) {
 		float ny = rand() % 672;
 		float nx = rand() % 486;
-		other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(nx, ny));
+		//other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(nx, ny));
 	}
 
 	void PlayerScript::OnCollisionStay(Collider* other) {
 		float ny = rand() % 672;
 		float nx = rand() % 486;
-		other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(nx, ny));
+		//other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(nx, ny));
+
 	}
 
 	void PlayerScript::OnCollisionExit(Collider* other) {
@@ -104,85 +106,102 @@ namespace maple {
 	}
 
 	void PlayerScript::idle() {
-		if (Input::GetKey(eKeyCode::LButton) || Input::GetKey(eKeyCode::Space)) {
-			Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
-			CatScript* catSrc = cat->AddComponent<CatScript>();
+		//if (Input::GetKey(eKeyCode::LButton) || Input::GetKey(eKeyCode::Space)) {
+		//	Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
+		//	CatScript* catSrc = cat->AddComponent<CatScript>();
 
-			catSrc->SetPlayer(GetOwner());
+		//	catSrc->SetPlayer(GetOwner());
 
-			graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
-			Animator* catAnimator = cat->AddComponent<Animator>();
-			catAnimator->CreateAnimation(L"DownWalk", catTex
-				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"RightWalk", catTex
-				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"UpWalk", catTex
-				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"LeftWalk", catTex
-				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"SitDown", catTex
-				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"Grooming", catTex
-				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"LayDown", catTex
-				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//	graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
+		//	Animator* catAnimator = cat->AddComponent<Animator>();
+		//	catAnimator->CreateAnimation(L"DownWalk", catTex
+		//		, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//	catAnimator->CreateAnimation(L"RightWalk", catTex
+		//		, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//	catAnimator->CreateAnimation(L"UpWalk", catTex
+		//		, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//	catAnimator->CreateAnimation(L"LeftWalk", catTex
+		//		, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//	catAnimator->CreateAnimation(L"SitDown", catTex
+		//		, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//	catAnimator->CreateAnimation(L"Grooming", catTex
+		//		, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+		//	catAnimator->CreateAnimation(L"LayDown", catTex
+		//		, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
-			catAnimator->PlayAnimation(L"SitDown", false);
+		//	catAnimator->PlayAnimation(L"SitDown", false);
 
-			Transform* tr = GetOwner()->GetComponent<Transform>();
+		//	Transform* tr = GetOwner()->GetComponent<Transform>();
 
-			cat->GetComponent<Transform>()->SetPosition(tr->GetPosition() /*+ Vector2(100.0f, 0.0f)*/);
-			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
-
-
-			Vector2 mousePos = Input::GetMousePosition();
-			catSrc->mDest = mousePos;
+		//	cat->GetComponent<Transform>()->SetPosition(tr->GetPosition() /*+ Vector2(100.0f, 0.0f)*/);
+		//	cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 
 
-			/*		mState = PlayerScript::eState::GiveWater;
-					mAnimator->PlayAnimation(L"FrontGiveWater", false);
-					Vector2 mousePos = Input::GetMousePosition();*/
+		//	Vector2 mousePos = Input::GetMousePosition();
+		//	catSrc->mDest = mousePos;
 
-			
-		}
+
+		//	/*		mState = PlayerScript::eState::GiveWater;
+		//			mAnimator->PlayAnimation(L"FrontGiveWater", false);
+		//			Vector2 mousePos = Input::GetMousePosition();*/
+
+		//	
+		//}
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+
 		float speed = 3.0f;
 
 		if (Input::GetKey(eKeyCode::D)) {
-			pos.x += 100.0f * Time::DeltaTime() * speed;
+			//pos.x += 100.0f * Time::DeltaTime() * speed;
+			rb->AddForce(Vector2(200.0f, 0.0f));
 		}
 		if (Input::GetKey(eKeyCode::A)) {
-			pos.x -= 100.0f * Time::DeltaTime() * speed;
-		}
-		if (Input::GetKey(eKeyCode::W)) {
-			pos.y -= 100.0f * Time::DeltaTime() * speed;
+			//pos.x -= 100.0f * Time::DeltaTime() * speed;
+			rb->AddForce(Vector2(-200.0f, 0.0f));
 		}
 		if (Input::GetKey(eKeyCode::S)) {
-			pos.y += 100.0f * Time::DeltaTime() * speed;
+			//pos.y += 100.0f * Time::DeltaTime() * speed;
+			rb->AddForce(Vector2(0.0f, 200.0f));
 		}
-
-		tr->SetPosition(pos);
+		if (Input::GetKey(eKeyCode::W)) {
+			//pos.y -= 100.0f * Time::DeltaTime() * speed;
+			//rb->AddForce(Vector2(0.0f, -200.0f));
+			if (rb->GetGround()) {
+				Vector2 velocity = rb->GetVelocity();
+				velocity.y = -500.0f;
+				rb->SetVelocity(velocity);
+				rb->SetGround(false);
+			}
+		}
+		
+		//tr->SetPosition(pos);
 	}
 
 	void PlayerScript::move() {
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 
 		if (Input::GetKey(eKeyCode::D)) {
-			pos.x += 100.0f * Time::DeltaTime();
+			//pos.x += 100.0f * Time::DeltaTime();
+			rb->AddForce(Vector2(200.0f, 0.0f));
 		}
 		if (Input::GetKey(eKeyCode::A)) {
-			pos.x -= 100.0f * Time::DeltaTime();
+			//pos.x -= 100.0f * Time::DeltaTime();
+			rb->AddForce(Vector2(-200.0f, 0.0f));
 		}
 		if (Input::GetKey(eKeyCode::W)) {
-			pos.y -= 100.0f * Time::DeltaTime();
+			//pos.y -= 100.0f * Time::DeltaTime();
+			rb->AddForce(Vector2(0.0f, -200.0f));
 		}
 		if (Input::GetKey(eKeyCode::S)) {
-			pos.y += 100.0f * Time::DeltaTime();
+			//pos.y += 100.0f * Time::DeltaTime();
+			rb->AddForce(Vector2(0.0f, 200.0f));
 		}
 
-		tr->SetPosition(pos);
+		//tr->SetPosition(pos);
 
 		if (Input::GetKeyUp(eKeyCode::D) || Input::GetKeyUp(eKeyCode::A)
 			|| Input::GetKeyUp(eKeyCode::W) || Input::GetKeyUp(eKeyCode::S)) {

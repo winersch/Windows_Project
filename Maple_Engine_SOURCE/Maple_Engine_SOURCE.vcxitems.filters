@@ -52,8 +52,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MAnimator.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MComponent.cpp">
       <Filter>Component\Component</Filter>
     </ClCompile>
@@ -78,6 +76,17 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MTilemapRenderer.cpp">
       <Filter>Component\TileMapRenderer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAnimation.cpp">
+      <Filter>Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAnimator.cpp">
+      <Filter>Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MRigidbody.cpp">
+      <Filter>Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -140,8 +149,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MAnimator.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MComponent.h">
       <Filter>Component\Component</Filter>
     </ClInclude>
@@ -163,6 +170,17 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MTilemapRenderer.h">
       <Filter>Component\TileMapRenderer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAnimation.h">
+      <Filter>Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAnimator.h">
+      <Filter>Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MRigidbody.h">
+      <Filter>Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -215,6 +233,12 @@
     </Filter>
     <Filter Include="Component\TileMapRenderer">
       <UniqueIdentifier>{8971115d-c856-4769-a293-89bb96972e33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animator">
+      <UniqueIdentifier>{2856f64c-fe24-4c99-bfe0-ba48009bccb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rigidbody">
+      <UniqueIdentifier>{a7071c7d-ee16-4887-97b6-7bbae75f4a44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

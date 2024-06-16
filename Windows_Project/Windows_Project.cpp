@@ -7,6 +7,7 @@
 #include "..\\Maple_Engine_SOURCE\\MApplication.h"
 #include "..\\Maple_Engine_SOURCE\\MResources.h"
 #include "..\\Maple_Engine_SOURCE\\MTexture.h"
+#include "..\\Maple_Engine_SOURCE\\MSceneManager.h"
 
 #include "..\\Maple_Engine_Windows\\Scenes\MLoadScenes.h"
 #include "..\\Maple_Engine_Windows\\Scenes\MLoadResources.h"
@@ -30,6 +31,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc);
 BOOL                InitInstance(HINSTANCE, int);
+BOOL				InitToolScene(HINSTANCE);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK    WndTileProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
@@ -137,8 +139,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
-	HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
-		0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
 	application.Initialize(hWnd, width, height);
 
@@ -161,27 +161,43 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	maple::LoadResources();
 	//load Scenes
 	maple::LoadScenes();
+
+	InitToolScene(hInstance);
+
 	int a = 0;
 	srand((unsigned int)(&a));
 
 
-	//Tile 윈도우 크기 조정
-	maple::graphics::Texture* texture
-		= maple::Resources::Find<maple::graphics::Texture>(L"SpringFloor");
-
-	RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
-	AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-	UINT toolWidth = rect.right - rect.left;
-	UINT toolHeight = rect.bottom - rect.top;
-
-	SetWindowPos(ToolHWnd, nullptr, width+50, 0, toolWidth, toolHeight, 0);
-	ShowWindow(ToolHWnd, true);
-
-
-	UpdateWindow(ToolHWnd);
 	return TRUE;
 }
+
+
+BOOL InitToolScene(HINSTANCE hInstance) {
+	maple::Scene* activeScene = maple::SceneManager::GetActiveScene();
+	std::wstring name = activeScene->GetName();
+
+	if (name == L"ToolScene") {
+		HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
+			0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+
+		//Tile 윈도우 크기 조정 -- TOOL
+		maple::graphics::Texture* texture
+			= maple::Resources::Find<maple::graphics::Texture>(L"SpringFloor");
+
+		RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+		UINT toolWidth = rect.right - rect.left;
+		UINT toolHeight = rect.bottom - rect.top;
+
+		SetWindowPos(ToolHWnd, nullptr, 672, 0, toolWidth, toolHeight, 0);
+		ShowWindow(ToolHWnd, true);
+		UpdateWindow(ToolHWnd);
+	}
+
+	return TRUE;
+}
+
 
 //
 //  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
