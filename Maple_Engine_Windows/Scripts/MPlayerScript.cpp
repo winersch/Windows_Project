@@ -9,6 +9,7 @@
 #include "MObject.h"
 #include "..\\Maple_Engine_Windows\\Contents\\MCat.h"
 #include "MRigidbody.h"
+#include "MUIManager.h"
 
 namespace maple {
 
@@ -45,6 +46,21 @@ namespace maple {
 			default:
 				break;
 		}
+
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+		COLORREF color = mPixelMap->GetPixel(pos.x, pos.y + 50);
+
+		Rigidbody* playerRb = GetOwner()->GetComponent<Rigidbody>();
+		if (color == RGB(255, 0, 0)) {
+			playerRb->SetGround(true);
+
+			pos.y -= 1;
+			tr->SetPosition(pos);
+		} else {
+			playerRb->SetGround(false);
+		}
+
 	}
 
 	void PlayerScript::LateUpdate() {
@@ -174,6 +190,16 @@ namespace maple {
 				rb->SetVelocity(velocity);
 				rb->SetGround(false);
 			}
+		}
+		if (Input::GetKeyDown(eKeyCode::I)) {
+			UIManager::Push(eUIType::HpBar);
+			//UIManager::Push(eUIType::Button);
+
+		}
+
+		if (Input::GetKeyDown(eKeyCode::O)) {
+			UIManager::Pop(eUIType::HpBar);
+
 		}
 		
 		//tr->SetPosition(pos);

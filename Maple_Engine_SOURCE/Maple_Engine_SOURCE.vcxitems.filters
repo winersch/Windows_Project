@@ -85,8 +85,30 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MRigidbody.cpp">
       <Filter>Rigidbody</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MUIBase.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)MUIManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIBase.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIButton.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIHUD.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MFmod.cpp">
+      <Filter>Fmod</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAudioClip.cpp">
+      <Filter>Resources\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAudioListener.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAudioSource.cpp">
+      <Filter>Component\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -179,8 +201,30 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MRigidbody.h">
       <Filter>Rigidbody</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MUIBase.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)MUIManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIBase.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIButton.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIHUD.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MFmod.h">
+      <Filter>Fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAudioClip.h">
+      <Filter>Resources\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAudioListener.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAudioSource.h">
+      <Filter>Component\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -197,9 +241,6 @@
     </Filter>
     <Filter Include="High Level Interface">
       <UniqueIdentifier>{72f62c98-8f7a-45a6-93fb-b7f5dd3f09bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{2c8aaf34-7e87-48ff-adde-edcaff455c3e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{087916e5-8cb1-4259-ae9b-626ae7763d33}</UniqueIdentifier>
@@ -239,6 +280,21 @@
     </Filter>
     <Filter Include="Rigidbody">
       <UniqueIdentifier>{a7071c7d-ee16-4887-97b6-7bbae75f4a44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{10b4c42b-2f42-40b4-85e1-4e8a3d3efb77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fmod">
+      <UniqueIdentifier>{711b22ba-402c-4a79-bb74-4518b4e4cf9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{2c8aaf34-7e87-48ff-adde-edcaff455c3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Audio">
+      <UniqueIdentifier>{99a2b53a-a0a1-403f-bbeb-509b13065d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Audio">
+      <UniqueIdentifier>{de4d196a-68c1-4f0b-8709-a4ebb5b91aae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

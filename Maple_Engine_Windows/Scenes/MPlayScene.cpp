@@ -21,6 +21,11 @@
 #include "MRigidbody.h"
 #include "..\\Maple_Engine_Windows\\Contents\\MFloor.h"
 #include "..\\Maple_Engine_Windows\\Scripts\\MFloorScript.h"
+#include "MUIManager.h"
+#include "MAudioClip.h"
+#include "MAudioListener.h"
+#include "MAudioSource.h"
+
 
 namespace maple {
 
@@ -36,36 +41,7 @@ namespace maple {
 
 	void PlayScene::Initialize() {
 
-		//FILE* pFile = nullptr;
-		//_wfopen_s(&pFile, L"..\\Resources\\Home", L"rb");
-
-		//while (true) {
-		//	int idxX = 0;
-		//	int idxY = 0;
-
-		//	int posX = 0;
-		//	int posY = 0;
-
-
-		//	if (fread(&idxX, sizeof(int), 1, pFile) == NULL)
-		//		break;
-		//	if (fread(&idxY, sizeof(int), 1, pFile) == NULL)
-		//		break;
-		//	if (fread(&posX, sizeof(int), 1, pFile) == NULL)
-		//		break;
-		//	if (fread(&posY, sizeof(int), 1, pFile) == NULL)
-		//		break;
-
-		//	Tile* tile = object::Instantiate<Tile>(eLayerType::Tile, Vector2(posX, posY));
-		//	TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
-		//	tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
-		//	tmr->SetIndex(Vector2(idxX, idxY));
-
-		//	//mTiles.push_back(tile);
-		//}
-
-		//fclose(pFile);
-
+	
 
 		{
 			// main camera
@@ -75,7 +51,8 @@ namespace maple {
 
 			mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
 			object::DontDestroyOnLoad(mPlayer);
-			
+			mPlayer->AddComponent<AudioListener>();
+
 			PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
 			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
@@ -102,49 +79,23 @@ namespace maple {
 
 			mPlayer->AddComponent<Rigidbody>();
 
-			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
+			//Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
+			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(0.0f, 0.0f));
 			floor->SetName(L"Floor");
-			BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
-			floorCol->SetSize(Vector2(3.0f, 1.0f));
-			floor->AddComponent<FloorScript>();
+			SpriteRenderer* floorSR = floor->AddComponent<SpriteRenderer>();
+			floorSR->SetTexture(Resources::Find<graphics::Texture>(L"PixelMap"));
 
-			/////CAT
-			//Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
-			////cat->SetActive(true);
-			//cat->AddComponent<CatScript>();
-			////cameraComp->SetTarget(cat);
-			//graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
-			//Animator* catAnimator = cat->AddComponent<Animator>();
+			AudioSource* as = floor->AddComponent<AudioSource>();
 
+			plScript->SetPixelMapTexture(Resources::Find<graphics::Texture>(L"PixelMap"));
 
-			//CircleCollider2D* boxCatCollider = cat->AddComponent<CircleCollider2D>();
+			//BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
+			//floorCol->SetSize(Vector2(3.0f, 1.0f));
+			//floor->AddComponent<FloorScript>();
 
-			////BoxCollider2D* boxCatCollider = cat->AddComponent<BoxCollider2D>();
-
-			//boxCatCollider->SetOffset(Vector2(-50.0f, -50.0f));
-
-			////catAnimator->CreateAnimation(L"DownWalk", catTex
-			////	, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			////catAnimator->CreateAnimation(L"RightWalk", catTex
-			////	, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			////catAnimator->CreateAnimation(L"UpWalk", catTex
-			////	, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			////catAnimator->CreateAnimation(L"LeftWalk", catTex
-			////	, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			////catAnimator->CreateAnimation(L"SitDown", catTex
-			////	, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			////catAnimator->CreateAnimation(L"Grooming", catTex
-			////	, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			////catAnimator->CreateAnimation(L"LayDown", catTex
-			////	, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-			////catAnimator->PlayAnimation(L"SitDown", false);
-			//catAnimator->CreateAnimationByFolder(L"MushroomIdle", L"..\\Resources\\Mushroom", Vector2::Zero, 0.1f);
-
-			//catAnimator->PlayAnimation(L"MushroomIdle", true);
-
-			//cat->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 100.0f));
-			//cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
+			AudioClip* ac = Resources::Load<AudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");
+			as->SetClip(ac);
+			//as->Play();
 
 			Scene::Initialize();
 		}
@@ -164,24 +115,18 @@ namespace maple {
 
 	void PlayScene::Render(HDC hdc) {
 		Scene::Render(hdc);
-		
-		/*
-
-		Scene::Render(hdc);
-		wchar_t str[50] = L"Play Scene";
-		TextOut(hdc, 0, 0, str, 10);*/
 	}
 
 	void PlayScene::OnEnter() {
 		Scene::OnEnter();
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
+		UIManager::Push(eUIType::Button);
 	}
 
 	void PlayScene::OnExit() {
+		UIManager::Pop(eUIType::Button);
 		Scene::OnExit();
-		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(0, 0));
-
 	}
 
 }

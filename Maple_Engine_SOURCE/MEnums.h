@@ -10,7 +10,8 @@ namespace maple::enums {
 		SpriteRenderer,
 		Animator,
 		Camera,
-
+		AudioListener,
+		AudioSource,
 		End,
 	};
 
@@ -42,6 +43,8 @@ namespace maple::enums {
 	};
 
 	enum class eUIType {
+		HpBar,
+		Button,
 		End,
 	};
 }

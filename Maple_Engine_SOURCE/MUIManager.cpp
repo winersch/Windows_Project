@@ -1,4 +1,6 @@
 #include "MUIManager.h"
+#include "MUIHUD.h"
+#include "MUIButton.h"
 
 namespace maple {
 
@@ -9,6 +11,12 @@ namespace maple {
 
 
 	void UIManager::Initialize() {
+		// UI 객체 생성해주기
+		UIHUD* hud = new UIHUD();
+		mUIs.insert(std::make_pair(eUIType::HpBar, hud));
+
+		UIButton* button = new UIButton();
+		mUIs.insert(std::make_pair(eUIType::Button, button));
 	}
 
 	void UIManager::OnLoad(eUIType type) {
@@ -52,13 +60,23 @@ namespace maple {
 	}
 
 	void UIManager::Render(HDC hdc) {
-		std::stack<UIBase*> uiBases = mUIBases;
-		while (!uiBases.empty()) {
-			UIBase* uiBase = uiBases.top();
-			if (uiBase) {
-				uiBase->Render(hdc);
-				uiBases.pop();
-			}
+		if (mUIBases.size() <= 0)
+			return;
+
+		std::vector<UIBase*> buff;
+
+		UIBase* uibase = nullptr;
+		while (mUIBases.size() > 0) {
+			uibase = mUIBases.top();
+			mUIBases.pop();
+
+			buff.push_back(uibase);
+		}
+		std::reverse(buff.begin(), buff.end());
+
+		for (UIBase* ui : buff) {
+			ui->Render(hdc);
+			mUIBases.push(ui);
 		}
 	}
 
@@ -90,6 +108,13 @@ namespace maple {
 	void UIManager::OnFail() {
 		mActiveUI = nullptr;
 	}
+	
+	void UIManager::Release() {
+		for (auto iter : mUIs) {
+			delete iter.second;
+			iter.second = nullptr;
+		}
+	}
 
 	void UIManager::Push(eUIType type) {
 		mRequestUiQueue.push(type);
@@ -100,10 +125,36 @@ namespace maple {
 			return;
 
 		// 해당 ui 한개만 스택에서 제외
+		std::stack<UIBase*> tempStack;
+
 		UIBase* uibase = nullptr;
 		while (mUIBases.size() > 0) {
 			uibase = mUIBases.top();
 			mUIBases.pop();
+
+			if (uibase->GetType() != type) {
+				tempStack.push(uibase);
+				continue;
+			}
+
+			if (uibase->IsFullScreen()) {
+				std::stack<UIBase*> uiBases = mUIBases;
+				while (!uiBases.empty()) {
+					UIBase* uiBase = uiBases.top();
+					uiBases.pop();
+					if (uiBase) {
+						uiBase->Active();
+						break;
+					}
+				}
+			}
+			uibase->UIClear();
+		}
+		
+		while (tempStack.size() > 0) {
+			uibase = tempStack.top();
+			tempStack.pop();
+			mUIBases.push(uibase);
 		}
 	}
 

@@ -7,6 +7,7 @@
 #include "MAnimator.h"
 #include "MObject.h"
 #include "MRigidbody.h"
+#include "MAudioSource.h"
 
 namespace maple {
 
@@ -51,7 +52,10 @@ namespace maple {
 
 			playerTr->SetPosition(playerPos);
 		}
-
+		AudioSource* as = GetOwner()->GetComponent<AudioSource>();
+		//as->SetClip();
+		as->SetLoop(true);
+		as->Play();
 
 		playerRb->SetGround(true);
 	}

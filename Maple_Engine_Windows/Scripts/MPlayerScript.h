@@ -1,6 +1,7 @@
 #pragma once
 #include "..\\Maple_Engine_SOURCE\\MScript.h"
 #include "MAnimator.h"
+#include "MTexture.h"
 
 namespace maple {
 
@@ -31,6 +32,7 @@ namespace maple {
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;
 
+		void SetPixelMapTexture(graphics::Texture* texture) { mPixelMap = texture; }
 
 	private:
 		void idle();
@@ -40,7 +42,7 @@ namespace maple {
 	private:
 		eState mState;
 		Animator* mAnimator;
-
+		graphics::Texture* mPixelMap;
 		
 				
 	};

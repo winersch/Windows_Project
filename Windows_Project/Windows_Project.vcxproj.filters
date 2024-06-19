@@ -28,4 +28,7 @@
   <ItemGroup>
     <ClCompile Include="Windows_Project.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Maple_Engine_Windows\fmodL.dll" />
+  </ItemGroup>
 </Project>

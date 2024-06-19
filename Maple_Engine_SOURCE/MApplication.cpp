@@ -5,6 +5,8 @@
 #include "MSceneManager.h"
 #include "MResources.h"
 #include "MCollisionManager.h"
+#include "MUIManager.h"
+#include "MFmod.h"
 
 namespace maple {
 	Application::Application()
@@ -26,7 +28,9 @@ namespace maple {
 		createBuffer(width, height);
 		intitializeEct();
 
+		Fmod::Initialize();
 		CollisionManager::Initialize();
+		UIManager::Initialize();
 		SceneManager::Initialize();
 
 	}
@@ -40,11 +44,13 @@ namespace maple {
 		Input::Update();
 		Time::Update();
 		CollisionManager::Update();
+		UIManager::Update();
 		SceneManager::Update();
 
 	}
 	void Application::LateUpdate() {
 		CollisionManager::LateUpdate();
+		UIManager::LateUpdate();
 		SceneManager::LateUpdate();
 	}
 
@@ -53,6 +59,7 @@ namespace maple {
 		Time::Render(mBackHdc);
 
 		CollisionManager::Render(mBackHdc);
+		UIManager::Render(mBackHdc);
 		SceneManager::Render(mBackHdc);
 
 
@@ -65,6 +72,7 @@ namespace maple {
 
 	void Application::Release() {
 		SceneManager::Release();
+		UIManager::Release();
 		Resources::Release();
 	}
 

@@ -18,6 +18,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MBoxCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MCircleCollider2D.h" />
@@ -27,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MLayer.h" />
@@ -45,6 +49,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTransform.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIButton.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MUIHUD.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MUIManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -56,6 +62,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MBoxCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MCircleCollider2D.cpp" />
@@ -69,6 +78,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MGameObject.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -112,6 +122,8 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MTransform.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIButton.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MUIHUD.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MUIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
