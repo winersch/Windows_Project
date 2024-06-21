@@ -44,58 +44,58 @@ namespace maple {
 	
 
 		{
-			// main camera
-			GameObject* camera =object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 440.0f));
-			Camera* cameraComp = camera->AddComponent<Camera>();
-			renderer::mainCamera = cameraComp;
+			//// main camera
+			//GameObject* camera =object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 440.0f));
+			//Camera* cameraComp = camera->AddComponent<Camera>();
+			//renderer::mainCamera = cameraComp;
 
-			mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
-			object::DontDestroyOnLoad(mPlayer);
-			mPlayer->AddComponent<AudioListener>();
+			//mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
+			//object::DontDestroyOnLoad(mPlayer);
+			//mPlayer->AddComponent<AudioListener>();
 
-			PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
+			//PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
 
-			BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
-			//CircleCollider2D* collider = mPlayer->AddComponent<CircleCollider2D>();
-			collider->SetOffset(Vector2(-50.0f, -50.0f));
+			//BoxCollider2D* collider = mPlayer->AddComponent<BoxCollider2D>();
+			////CircleCollider2D* collider = mPlayer->AddComponent<CircleCollider2D>();
+			//collider->SetOffset(Vector2(-50.0f, -50.0f));
 
 
-			graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
-			Animator* playerAnimator = mPlayer->AddComponent<Animator>();
-			playerAnimator->CreateAnimation(L"Idle", playerTex
-				, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
-			playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
-				, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.005f);
+			//graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
+			//Animator* playerAnimator = mPlayer->AddComponent<Animator>();
+			//playerAnimator->CreateAnimation(L"Idle", playerTex
+			//	, Vector2(2000.0f, 250.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 1, 0.1f);
+			//playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex
+			//	, Vector2(0.0f, 2000.0f), Vector2(250.0f, 250.0f), Vector2::Zero, 12, 0.005f);
 
-			playerAnimator->PlayAnimation(L"Idle", false);
+			//playerAnimator->PlayAnimation(L"Idle", false);
 
-			playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
+			//playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
-			//playerAnimator->
+			////playerAnimator->
 
-			mPlayer->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 250.0f));
-			//mPlayer->GetComponent<Transform>()->SetRotation(0.0f);
-			//mPlayer->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
+			//mPlayer->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 250.0f));
+			////mPlayer->GetComponent<Transform>()->SetRotation(0.0f);
+			////mPlayer->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
 
-			mPlayer->AddComponent<Rigidbody>();
+			//mPlayer->AddComponent<Rigidbody>();
 
-			//Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
-			Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(0.0f, 0.0f));
-			floor->SetName(L"Floor");
-			SpriteRenderer* floorSR = floor->AddComponent<SpriteRenderer>();
-			floorSR->SetTexture(Resources::Find<graphics::Texture>(L"PixelMap"));
+			////Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(100.0f, 600.0f));
+			//Floor* floor = object::Instantiate<Floor>(eLayerType::Floor, Vector2(0.0f, 0.0f));
+			//floor->SetName(L"Floor");
+			//SpriteRenderer* floorSR = floor->AddComponent<SpriteRenderer>();
+			//floorSR->SetTexture(Resources::Find<graphics::Texture>(L"PixelMap"));
 
-			AudioSource* as = floor->AddComponent<AudioSource>();
+			//AudioSource* as = floor->AddComponent<AudioSource>();
 
-			plScript->SetPixelMapTexture(Resources::Find<graphics::Texture>(L"PixelMap"));
+			//plScript->SetPixelMapTexture(Resources::Find<graphics::Texture>(L"PixelMap"));
 
-			//BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
-			//floorCol->SetSize(Vector2(3.0f, 1.0f));
-			//floor->AddComponent<FloorScript>();
+			////BoxCollider2D* floorCol = floor->AddComponent<BoxCollider2D>();
+			////floorCol->SetSize(Vector2(3.0f, 1.0f));
+			////floor->AddComponent<FloorScript>();
 
-			AudioClip* ac = Resources::Load<AudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");
-			as->SetClip(ac);
-			//as->Play();
+			//AudioClip* ac = Resources::Load<AudioClip>(L"BGSound", L"..\\Resources\\Sound\\smw_bonus_game_end.wav");
+			//as->SetClip(ac);
+			////as->Play();
 
 			Scene::Initialize();
 		}

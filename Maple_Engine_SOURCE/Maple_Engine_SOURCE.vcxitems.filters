@@ -109,6 +109,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MAudioSource.cpp">
       <Filter>Component\Audio</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MGraphicDevice_DX11.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -225,6 +226,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MAudioSource.h">
       <Filter>Component\Audio</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MGraphicDevice_DX11.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">

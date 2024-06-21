@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maple_Engine_Windows", "Map
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Maple_Engine_SOURCE", "Maple_Engine_SOURCE\Maple_Engine_SOURCE.vcxitems", "{359548B7-485D-4031-835C-367CC67792B5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shaders_SOURCE", "Shaders_SOURCE\Shaders_SOURCE.vcxitems", "{F16E2437-0E43-4B88-8E54-0DE8962BBB24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -43,5 +45,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Maple_Engine_SOURCE\Maple_Engine_SOURCE.vcxitems*{359548b7-485d-4031-835c-367cc67792b5}*SharedItemsImports = 9
 		Maple_Engine_SOURCE\Maple_Engine_SOURCE.vcxitems*{9e69ce8f-a6b6-46e7-87ae-91fd3f6be340}*SharedItemsImports = 4
+		Shaders_SOURCE\Shaders_SOURCE.vcxitems*{f16e2437-0e43-4b88-8e54-0de8962bbb24}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

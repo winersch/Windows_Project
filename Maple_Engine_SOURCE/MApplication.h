@@ -1,6 +1,7 @@
 #pragma once
 #include "CommonInclude.h"
 #include "MGameObject.h"
+#include "MGraphicDevice_DX11.h"
 
 namespace maple {
 	class Application {
@@ -33,6 +34,8 @@ namespace maple {
 
 
 	private:
+		std::unique_ptr<graphics::GraphicDevice_DX11> mGraphicDevice;
+
 		HWND mHwnd;
 		HDC mHdc;
 
