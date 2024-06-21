@@ -7,6 +7,7 @@
 #include "MCollisionManager.h"
 #include "MUIManager.h"
 #include "MFmod.h"
+#include "MRenderer.h"
 
 namespace maple {
 	Application::Application()
@@ -29,6 +30,7 @@ namespace maple {
 		intitializeEct();
 
 		mGraphicDevice = std::make_unique<graphics::GraphicDevice_DX11>();
+		renderer::Initialize();
 		mGraphicDevice->Initialize();
 
 		Fmod::Initialize();
