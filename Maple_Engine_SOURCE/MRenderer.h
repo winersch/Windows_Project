@@ -16,6 +16,7 @@ namespace maple::renderer {
 
 	extern ID3D11Buffer* vertexBuffer;
 	extern ID3D11Buffer* indexBuffer;
+	extern ID3D11Buffer* constantBuffer;
 
 	extern ID3DBlob* vsBlob;
 	extern ID3D11VertexShader* vsShader;

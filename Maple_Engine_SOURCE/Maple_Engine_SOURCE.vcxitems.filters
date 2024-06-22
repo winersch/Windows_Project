@@ -109,7 +109,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MAudioSource.cpp">
       <Filter>Component\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)MGraphicDevice_DX11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MGraphicDevice_DX11.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -226,7 +228,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MAudioSource.h">
       <Filter>Component\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)MGraphicDevice_DX11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MGraphicDevice_DX11.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MGraphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -297,6 +304,9 @@
     </Filter>
     <Filter Include="Component\Audio">
       <UniqueIdentifier>{de4d196a-68c1-4f0b-8709-a4ebb5b91aae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{a784fa4f-98ef-4b25-afff-5245a1640a64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
