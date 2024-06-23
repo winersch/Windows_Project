@@ -36,7 +36,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MResource.h" />
@@ -45,6 +47,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MScript.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MTilemapRenderer.h" />
@@ -95,7 +98,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MResource.cpp" />
@@ -114,6 +119,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)MScript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MTilemapRenderer.cpp" />

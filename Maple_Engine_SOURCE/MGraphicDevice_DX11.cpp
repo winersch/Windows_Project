@@ -304,7 +304,7 @@ namespace maple::graphics {
 		constantBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 		constantBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-		Vector4 pos(0.5f, 0.0f, 0.0f, 1.0f);
+		Vector4 pos(0.1f, 0.0f, 0.0f, 1.0f);
 		D3D11_SUBRESOURCE_DATA constantBufferData = {};
 		constantBufferData.pSysMem = &pos;
 #pragma endregion

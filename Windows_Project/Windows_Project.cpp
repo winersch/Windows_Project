@@ -160,7 +160,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 
 	maple::LoadResources();
 	//load Scenes
-	maple::LoadScenes();
+	//maple::LoadScenes(); -> LoadingScene으로 업무 위임
 
 	InitToolScene(hInstance);
 
