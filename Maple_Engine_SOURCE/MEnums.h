@@ -29,11 +29,11 @@ namespace maple::enums {
 
 	enum class eResourceType {
 		Texture,
-		AudioClip,
 		Animation,
+		AudioClip,
+		Shader,
 		Prefab,
 		End,
-
 	};
 
 	enum class eColliderType {
