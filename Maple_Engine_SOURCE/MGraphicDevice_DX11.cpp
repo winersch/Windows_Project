@@ -280,8 +280,7 @@ namespace maple::graphics {
 			assert(NULL && "Create input layout failed!");
 
 		renderer::vertexBuffer.Create(renderer::vertexes);
-		if (!(CreateBuffer(&bufferDesc, &sub, &renderer::vertexBuffer)))
-			assert(NULL && "Create vertex buffer failed!");
+	
 
 
 #pragma region index buffer desc
@@ -333,9 +332,7 @@ namespace maple::graphics {
 		mContext->IASetInputLayout(renderer::inputLayouts);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		UINT vertexSize = sizeof(renderer::Vertex);
-		UINT offset = 0;
-		mContext->IASetVertexBuffers(0, 1, &renderer::vertexBuffer, &vertexSize, &offset);
+		renderer::vertexBuffer.Bind();
 		mContext->IASetIndexBuffer(renderer::indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 	

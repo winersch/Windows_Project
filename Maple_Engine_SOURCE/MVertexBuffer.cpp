@@ -17,7 +17,7 @@ namespace maple::graphics {
 		sub.pSysMem = vertexes.data();
 
 		if (!(GetDevice()->CreateBuffer(&desc, &sub, buffer.GetAddressOf())))
-			assert(NULL, "Create vertex buffer failed!");
+			assert(NULL && "Create vertex buffer failed!");
 
 		return true;
 	}

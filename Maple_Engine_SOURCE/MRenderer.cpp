@@ -52,7 +52,6 @@ namespace maple::renderer {
 	}
 
 	void Release() {
-		vertexBuffer->Release();
 		inputLayouts->Release();
 		indexBuffer->Release();
 		constantBuffer->Release();
