@@ -155,6 +155,10 @@ namespace maple::graphics {
 		mContext->PSSetShader(pPixelShader, 0, 0);
 	}
 
+	void GraphicDevice_DX11::BindVertexBuffer(UINT StartSlot, UINT NumBuffers, ID3D11Buffer* const* ppVertexBuffers, const UINT* pStrides, const UINT* pOffsets) {
+		mContext->IASetVertexBuffers(StartSlot, NumBuffers, ppVertexBuffers, pStrides, pOffsets);
+	}
+
 	void GraphicDevice_DX11::BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer) {
 		UINT slot = (UINT)type;
 		switch (stage) {
@@ -275,17 +279,7 @@ namespace maple::graphics {
 			, &renderer::inputLayouts)))
 			assert(NULL && "Create input layout failed!");
 
-#pragma region vertex buffer desc
-		D3D11_BUFFER_DESC bufferDesc = {};
-
-		bufferDesc.ByteWidth = sizeof(renderer::Vertex) * 3;
-		bufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		bufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		bufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-
-		D3D11_SUBRESOURCE_DATA sub = { renderer::vertexes };
-		//sub.pSysMem = renderer::vertexes;
-#pragma endregion
+		renderer::vertexBuffer.Create(renderer::vertexes);
 		if (!(CreateBuffer(&bufferDesc, &sub, &renderer::vertexBuffer)))
 			assert(NULL && "Create vertex buffer failed!");
 

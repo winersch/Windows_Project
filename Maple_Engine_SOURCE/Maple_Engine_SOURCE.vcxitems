@@ -57,6 +57,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MUIButton.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MUIHUD.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MUIManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MVertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)MAnimation.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MUIButton.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MUIHUD.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MUIManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MVertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="$(MSBuildThisFileDirectory)CloudOcean.png" />

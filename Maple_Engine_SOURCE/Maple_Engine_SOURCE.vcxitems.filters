@@ -121,6 +121,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MMaterial.cpp">
       <Filter>Resources\Material</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MVertexBuffer.cpp">
+      <Filter>Graphics\Buffer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -252,6 +255,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MMaterial.h">
       <Filter>Resources\Material</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MVertexBuffer.h">
+      <Filter>Graphics\Buffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -340,6 +346,9 @@
     </Filter>
     <Filter Include="Graphics\GraphicDevice">
       <UniqueIdentifier>{ffe5b79d-cbac-4b2b-962b-9a81c2c242c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Buffer">
+      <UniqueIdentifier>{77017f62-316b-4c73-a071-86acc449a9ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
