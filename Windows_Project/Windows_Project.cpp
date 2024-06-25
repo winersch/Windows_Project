@@ -101,7 +101,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 //  용도: 창 클래스를 등록합니다.
 //
 ATOM MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc) {
-	WNDCLASSEXW wcex;
+	WNDCLASSEXW wcex = {};
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
 

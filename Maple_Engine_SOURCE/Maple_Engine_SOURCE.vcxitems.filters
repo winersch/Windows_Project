@@ -124,6 +124,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MVertexBuffer.cpp">
       <Filter>Graphics\Buffer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MConstantBuffer.cpp">
+      <Filter>Graphics\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MIndexBuffer.cpp">
+      <Filter>Graphics\Buffer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -256,6 +262,12 @@
       <Filter>Resources\Material</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)MVertexBuffer.h">
+      <Filter>Graphics\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MConstantBuffer.h">
+      <Filter>Graphics\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MIndexBuffer.h">
       <Filter>Graphics\Buffer</Filter>
     </ClInclude>
   </ItemGroup>

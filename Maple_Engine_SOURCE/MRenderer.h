@@ -3,6 +3,11 @@
 #include "MGraphicDevice_DX11.h"
 
 #include "MVertexBuffer.h"
+#include "MIndexBuffer.h"
+#include "MConstantBuffer.h"
+
+using namespace maple::math;
+using namespace maple::graphics;
 
 namespace maple::renderer {
 
@@ -14,9 +19,10 @@ namespace maple::renderer {
 	extern std::vector<UINT> indices;
 
 	extern graphics::VertexBuffer vertexBuffer;
-	extern ID3D11Buffer* indexBuffer;
-	extern ID3D11Buffer* constantBuffer;
+	extern graphics::IndexBuffer indexBuffer;
+	extern graphics::ConstantBuffer constantBuffers[(UINT)eCBType::End];
 
+	extern ID3D11Buffer* constantBuffer;
 	extern ID3D11InputLayout* inputLayouts;
 
 
