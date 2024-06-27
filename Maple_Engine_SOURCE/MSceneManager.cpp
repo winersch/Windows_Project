@@ -49,9 +49,9 @@ namespace maple {
 
 	}
 
-	void SceneManager::Render(HDC hdc) {
-		mActiveScene->Render(hdc);
-		mDontDestroyOnLoad->Render(hdc);
+	void SceneManager::Render() {
+		mActiveScene->Render();
+		mDontDestroyOnLoad->Render();
 
 	}
 

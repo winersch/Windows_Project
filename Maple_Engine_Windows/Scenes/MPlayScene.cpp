@@ -30,7 +30,7 @@
 namespace maple {
 
 	PlayScene::PlayScene()
-		:mPlayer()
+		:mPlayer(nullptr)
 	
 	{
 
@@ -49,8 +49,8 @@ namespace maple {
 			//Camera* cameraComp = camera->AddComponent<Camera>();
 			//renderer::mainCamera = cameraComp;
 
-			//mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
-			//object::DontDestroyOnLoad(mPlayer);
+			mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
+			object::DontDestroyOnLoad(mPlayer);
 			//mPlayer->AddComponent<AudioListener>();
 
 			//PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
@@ -113,8 +113,8 @@ namespace maple {
 		}
 	}
 
-	void PlayScene::Render(HDC hdc) {
-		Scene::Render(hdc);
+	void PlayScene::Render() {
+		Scene::Render();
 	}
 
 	void PlayScene::OnEnter() {

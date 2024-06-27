@@ -20,8 +20,8 @@ namespace maple {
 		GameObject::LateUpdate();
 	}
 
-	void Tile::Render(HDC hdc) {
-		GameObject::Render(hdc);
+	void Tile::Render() {
+		GameObject::Render();
 	}
 	void Tile::SetIndexPosition(int x, int y){
 		Transform* tr = GetComponent<Transform>();

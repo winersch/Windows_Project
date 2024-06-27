@@ -18,24 +18,21 @@ namespace maple::graphics {
 		~Texture();
 
 		virtual HRESULT Load(const std::wstring& path) override;
-		COLORREF GetPixel(int x, int y);
+		//COLORREF GetPixel(int x, int y);
 
-		UINT GetWidth() { return mWidth; }
+
+		UINT GetWidth() const { return mWidth; }
+		UINT GetHeight() const { return mHeight; }
+		eTextureType GetTextureType() const { return mType; }
+		bool IsAlpha() const { return mbAlpha; }
+
 		void SetWidth(UINT width) { mWidth = width; }
-		UINT GetHeight() { return mHeight; }
 		void SetHeight(UINT height) { mHeight = height; }
-		HDC GetHdc() { return mHdc; }
-		eTextureType GetTextureType() { return mType; }
-		Gdiplus::Image* GetImage() { return mImage; }
-		HBITMAP GetBitmap() { return mBitmap; }
-		bool IsAlpha() { return mbAlpha; }
 
 	private:
 		bool mbAlpha;
 		eTextureType mType;
-		Gdiplus::Image* mImage;
-		HBITMAP mBitmap;
-		HDC mHdc;
+		
 
 		UINT mWidth;
 		UINT mHeight;

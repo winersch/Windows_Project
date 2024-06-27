@@ -31,7 +31,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc);
 BOOL                InitInstance(HINSTANCE, int);
-BOOL				InitToolScene(HINSTANCE);
+//BOOL				InitToolScene(HINSTANCE);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK    WndTileProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
@@ -64,6 +64,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINDOWSPROJECT));
 
 	MSG msg;
+	maple::LoadScenes();
 
 	// GetMessage : 프로세스에서 발생한 메세지를 메세지 큐에서 가져오는 함수
 	//				메세지큐에 아무것도 없다면 아무 메세지도 가져오지 않는다.
@@ -87,7 +88,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,         // 프로그램의 인�
 		}
 	}
 
-	Gdiplus::GdiplusShutdown(gpToken);
 	application.Release();
 
 	return (int)msg.wParam;
@@ -139,10 +139,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
-
-	application.Initialize(hWnd, width, height);
-
-
 	if (!hWnd) {
 		return FALSE;
 	}
@@ -156,47 +152,50 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	//ShowWindow(ToolHWnd, nCmdShow);
 	//UpdateWindow(ToolHWnd);
 
-	Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
 
 	maple::LoadResources();
 	//load Scenes
 	//maple::LoadScenes(); -> LoadingScene으로 업무 위임
 
-	InitToolScene(hInstance);
+	//InitToolScene(hInstance);
 
-	int a = 0;
-	srand((unsigned int)(&a));
+	HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+	if (FAILED(hr))
+		assert(false);
 
-
-	return TRUE;
-}
-
-
-BOOL InitToolScene(HINSTANCE hInstance) {
-	maple::Scene* activeScene = maple::SceneManager::GetActiveScene();
-	std::wstring name = activeScene->GetName();
-
-	if (name == L"ToolScene") {
-		HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
-			0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
-
-		//Tile 윈도우 크기 조정 -- TOOL
-		maple::graphics::Texture* texture
-			= maple::Resources::Find<maple::graphics::Texture>(L"SpringFloor");
-
-		RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
-		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-		UINT toolWidth = rect.right - rect.left;
-		UINT toolHeight = rect.bottom - rect.top;
-
-		SetWindowPos(ToolHWnd, nullptr, 672, 0, toolWidth, toolHeight, 0);
-		ShowWindow(ToolHWnd, true);
-		UpdateWindow(ToolHWnd);
-	}
+	//int a = 0;
+	//srand((unsigned int)(&a));
+	application.Initialize(hWnd, width, height);
 
 	return TRUE;
 }
+
+//
+//BOOL InitToolScene(HINSTANCE hInstance) {
+//	maple::Scene* activeScene = maple::SceneManager::GetActiveScene();
+//	std::wstring name = activeScene->GetName();
+//
+//	if (name == L"ToolScene") {
+//		HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
+//			0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+//
+//		//Tile 윈도우 크기 조정 -- TOOL
+//		maple::graphics::Texture* texture
+//			= maple::Resources::Find<maple::graphics::Texture>(L"SpringFloor");
+//
+//		RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
+//		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+//
+//		UINT toolWidth = rect.right - rect.left;
+//		UINT toolHeight = rect.bottom - rect.top;
+//
+//		SetWindowPos(ToolHWnd, nullptr, 672, 0, toolWidth, toolHeight, 0);
+//		ShowWindow(ToolHWnd, true);
+//		UpdateWindow(ToolHWnd);
+//	}
+//
+//	return TRUE;
+//}
 
 
 //
@@ -232,7 +231,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		case WM_PAINT:
 		{
 			PAINTSTRUCT ps;
-			HDC hdc = BeginPaint(hWnd, &ps);
+			HDC hdc = NULL;
+			hdc	= BeginPaint(hWnd, &ps);
 
 			EndPaint(hWnd, &ps);
 		}

@@ -39,7 +39,7 @@ namespace maple {
 
 	}
 
-	void LoadingScene::Render(HDC hdc) {
+	void LoadingScene::Render() {
 
 	}
 

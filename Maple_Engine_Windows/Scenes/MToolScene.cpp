@@ -47,9 +47,9 @@ namespace maple {
 
 	}
 
-	void ToolScene::Render(HDC hdc) {
-		Scene::Render(hdc);
-		renderGreed(hdc);
+	void ToolScene::Render() {
+		Scene::Render();
+		renderGreed();
 	}
 
 	void ToolScene::OnEnter() {
@@ -171,25 +171,8 @@ namespace maple {
 		if (pFile)
 			fclose(pFile);
 	}
-	void ToolScene::renderGreed(HDC hdc) {
-		for (int i = 0; i < 50; i++) {
-			Vector2 pos = renderer::mainCamera->CalculatePosition
-			(
-				Vector2(TilemapRenderer::TileSize.x * i, 0.0f)
-			);
-
-			MoveToEx(hdc, (int)pos.x, 0, NULL);
-			LineTo(hdc, (int)pos.x, 1000);
-		}
-		for (int i = 0; i < 50; i++) {
-			Vector2 pos = renderer::mainCamera->CalculatePosition
-			(
-				Vector2(0.0f, TilemapRenderer::TileSize.y * i)
-			);
-
-			MoveToEx(hdc, 0, (int)pos.y, NULL);
-			LineTo(hdc, 1000, (int)pos.y);
-		}
+	void ToolScene::renderGreed() {
+		
 	}
 	void ToolScene::createTileObject() {
 		Vector2 pos = Input::GetMousePosition();
@@ -233,21 +216,9 @@ LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		case WM_PAINT:
 		{
 			PAINTSTRUCT ps;
-			HDC hdc = BeginPaint(hWnd, &ps);
+			BeginPaint(hWnd, &ps);
 
-			//Rectangle(hdc, 100, 100, 200, 200);
-			maple::graphics::Texture* texture
-				= maple::Resources::Find<maple::graphics::Texture>(L"SpringFloor");
-
-			TransparentBlt(hdc
-				, 0, 0
-				, texture->GetWidth()
-				, texture->GetHeight()
-				, texture->GetHdc()
-				, 0, 0
-				, texture->GetWidth()
-				, texture->GetHeight()
-				, RGB(255, 0, 255));
+			
 
 			EndPaint(hWnd, &ps);
 		}

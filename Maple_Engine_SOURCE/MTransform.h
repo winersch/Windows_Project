@@ -15,14 +15,17 @@ namespace maple {
 		void Initialize() override;
 		void Update()  override;
 		void LateUpdate()  override;
-		void Render(HDC hdc)  override;
+		void Render()  override;
+
+
+		Vector2 GetPosition() const { return mPosition; }
+		float GetRoation() const { return mRotation; }
+		Vector2 GetScale() const { return mScale; }
 
 		void SetPosition(Vector2 pos) { mPosition.x = pos.x; mPosition.y = pos.y; }
-		Vector2 GetPosition() { return mPosition; }
-		float GetRotation() { return mRotation; }
-		Vector2 GetScale() { return mScale; }
 		void SetRotation(float rotation) { mRotation = rotation; }
 		void SetScale(Vector2 scale) { mScale = scale; }
+
 
 	private:
 		Vector2 mPosition;

@@ -47,7 +47,7 @@ namespace maple {
 		static void updateKeyDown(Key& key);
 		static void updateKeyUp(Key& key);
 		static void getMousePositionByWindow();
-		static void clearKey();
+		static void clearKeys();
 
 		//eKeyState mState[] = eKeyState::Up;
 		static std::vector<Key> Keys;

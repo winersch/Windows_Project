@@ -63,10 +63,10 @@ namespace maple {
 		//clearRenderTarget();
 		mGraphicDevice->Draw();
 		
-		Time::Render(mBackHdc);
-		CollisionManager::Render(mBackHdc);
-		UIManager::Render(mBackHdc);
-		SceneManager::Render(mBackHdc);
+		Time::Render();
+		CollisionManager::Render();
+		UIManager::Render();
+		SceneManager::Render();
 
 
 		//copyRenterTarget(mBackHdc, mHdc);

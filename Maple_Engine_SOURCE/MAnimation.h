@@ -29,7 +29,7 @@ namespace maple {
 		HRESULT Load(const std::wstring& path) override;
 
 		void Update();
-		void Render(HDC hdc);
+		void Render();
 
 
 		void CreateAnimation(const std::wstring& name
@@ -42,7 +42,7 @@ namespace maple {
 
 		void Reset();
 
-		bool IsCompleted() { return mbComplete; }
+		bool IsCompleted() const { return mbComplete; }
 		void SetAnimator(class Animator* animator) { mAnimator = animator; }
 
 

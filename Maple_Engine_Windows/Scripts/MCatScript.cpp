@@ -60,7 +60,7 @@ namespace maple {
 	void CatScript::LateUpdate() {
 	}
 
-	void CatScript::Render(HDC hdc) {
+	void CatScript::Render() {
 	}
 
 	void CatScript::OnCollisionEnter(Collider* other) {
