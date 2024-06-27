@@ -155,6 +155,10 @@ namespace maple::graphics {
 		mContext->Unmap(buffer, 0);
 	}
 
+	void GraphicDevice_DX11::BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology) {
+		mContext->IASetPrimitiveTopology(topology);
+	}
+
 	void GraphicDevice_DX11::BindVS(ID3D11VertexShader* pVertexShader) {
 		mContext->VSSetShader(pVertexShader, 0, 0);
 	}
@@ -291,11 +295,7 @@ namespace maple::graphics {
 			, &renderer::inputLayouts)))
 			assert(NULL && "Create input layout failed!");
 
-		//vertex buffer
-		renderer::vertexBuffer.Create(renderer::vertexes);
-	
-		//index buffer
-		renderer::indexBuffer.Create(renderer::indices);
+		
 	}
 
 
@@ -318,15 +318,12 @@ namespace maple::graphics {
 		BindConstantBuffer(eShaderStage::VS, eCBType::Transform, renderer::constantBuffer);
 
 		mContext->IASetInputLayout(renderer::inputLayouts);
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-		renderer::vertexBuffer.Bind();
-		renderer::indexBuffer.Bind();
+		renderer::mesh->Bind();
 
 		Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
 		renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
 		renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
-	
+
 		graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
 		triangle->Bind();
 

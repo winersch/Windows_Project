@@ -2,9 +2,9 @@
 #include "MCamera.h"
 #include "MGraphicDevice_DX11.h"
 
-#include "MVertexBuffer.h"
-#include "MIndexBuffer.h"
+#include "MMesh.h"
 #include "MConstantBuffer.h"
+
 
 using namespace maple::math;
 using namespace maple::graphics;
@@ -18,8 +18,10 @@ namespace maple::renderer {
 
 	extern std::vector<UINT> indices;
 
-	extern graphics::VertexBuffer vertexBuffer;
-	extern graphics::IndexBuffer indexBuffer;
+	//extern graphics::VertexBuffer vertexBuffer;
+	//extern graphics::IndexBuffer indexBuffer;
+	extern Mesh* mesh;
+
 	extern graphics::ConstantBuffer constantBuffers[(UINT)eCBType::End];
 
 	extern ID3D11Buffer* constantBuffer;

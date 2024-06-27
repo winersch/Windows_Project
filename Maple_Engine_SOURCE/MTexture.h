@@ -17,10 +17,11 @@ namespace maple::graphics {
 		Texture();
 		~Texture();
 
+		virtual HRESULT Save(const std::wstring& path) override;
 		virtual HRESULT Load(const std::wstring& path) override;
 		//COLORREF GetPixel(int x, int y);
 
-
+		
 		UINT GetWidth() const { return mWidth; }
 		UINT GetHeight() const { return mHeight; }
 		eTextureType GetTextureType() const { return mType; }
