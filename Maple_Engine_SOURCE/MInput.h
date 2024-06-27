@@ -29,7 +29,7 @@ namespace maple {
 			bool bPressed;
 		};
 
-		static void Initailize();
+		static void Initialize();
 		static void Update();
 
 		static bool GetKeyDown(eKeyCode code);

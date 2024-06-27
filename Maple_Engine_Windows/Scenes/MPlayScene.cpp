@@ -25,7 +25,7 @@
 #include "MAudioClip.h"
 #include "MAudioListener.h"
 #include "MAudioSource.h"
-
+#include "MGraphicDevice_DX11.h"
 
 namespace maple {
 
@@ -115,6 +115,7 @@ namespace maple {
 
 	void PlayScene::Render() {
 		Scene::Render();
+		graphics::GetDevice()->Draw();
 	}
 
 	void PlayScene::OnEnter() {

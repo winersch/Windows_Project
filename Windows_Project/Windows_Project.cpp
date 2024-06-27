@@ -153,7 +153,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	//UpdateWindow(ToolHWnd);
 
 
-	maple::LoadResources();
+	//maple::LoadResources();
 	//load Scenes
 	//maple::LoadScenes(); -> LoadingScene으로 업무 위임
 
@@ -163,8 +163,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) {
 	if (FAILED(hr))
 		assert(false);
 
-	//int a = 0;
-	//srand((unsigned int)(&a));
 	application.Initialize(hWnd, width, height);
 
 	return TRUE;

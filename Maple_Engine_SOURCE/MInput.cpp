@@ -18,7 +18,7 @@ namespace maple {
 		VK_LBUTTON, VK_RBUTTON, VK_MBUTTON
 	};
 
-	void Input::Initailize() {
+	void Input::Initialize() {
 		createKeys();
 	}
 

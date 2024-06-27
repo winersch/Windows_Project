@@ -3,6 +3,9 @@
 #include "MSceneManager.h"
 #include "MResources.h"
 #include "MTexture.h"
+#include "MApplication.h"
+
+extern maple::Application application;
 
 namespace maple {
 
@@ -23,6 +26,14 @@ namespace maple {
 	}
 
 	void LoadingScene::Update() {
+		
+	}
+
+	void LoadingScene::LateUpdate() {
+
+	}
+
+	void LoadingScene::Render() {
 		if (mbLoadCompleted) {
 			//만약 메인쓰레드가 종료되는데 자식쓰레드가 남아있다면
 			//자식쓰레드를 메인쓰레드에 편입시켜 메인쓰레드가 종료되기전까지 block
@@ -35,14 +46,6 @@ namespace maple {
 		}
 	}
 
-	void LoadingScene::LateUpdate() {
-
-	}
-
-	void LoadingScene::Render() {
-
-	}
-
 	void LoadingScene::OnEnter() {
 
 	}
@@ -51,8 +54,13 @@ namespace maple {
 
 	}
 	void LoadingScene::resourcesLoad(std::mutex& m) {
+		while (true) {
+			if (application.IsLoaded() == true)
+				break;
+		}
 		m.lock();
 		{
+			Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\CloudOcean.png");
 			Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
 			Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
 			Resources::Load<graphics::Texture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
