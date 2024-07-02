@@ -35,8 +35,9 @@ namespace maple::graphics
 	};
 
 	enum class eSamplerType {
-		Anisotropic,
 		Point,
+		Linear,
+		Anisotropic,
 		PostProcess,
 		End,
 	};
