@@ -34,6 +34,13 @@ namespace maple::graphics
 		End,
 	};
 
+	enum class eSamplerType {
+		Anisotropic,
+		Point,
+		PostProcess,
+		End,
+	};
+
 	struct GpuBuffer {
 		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer = nullptr;
 		D3D11_BUFFER_DESC desc = {};

@@ -1,3 +1,5 @@
+#include "Samplers.hlsli"
+
 struct VS_Input {
     float3 pos : POSITION;
     float4 color : COLOR;
