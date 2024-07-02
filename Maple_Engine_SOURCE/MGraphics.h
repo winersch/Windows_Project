@@ -35,9 +35,16 @@ namespace maple::graphics
 	};
 
 	enum class eSamplerType {
-		Point,
-		Linear,
 		Anisotropic,
+		Point,
+		PostProcess,
+		End,
+	};
+
+	enum class eRenderingMode {
+		Opaque,
+		CutOut,
+		Transparent,
 		PostProcess,
 		End,
 	};

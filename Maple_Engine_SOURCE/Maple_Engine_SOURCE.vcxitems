@@ -37,6 +37,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MInputLayout.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)MMath.h" />
@@ -102,6 +103,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MInputLayout.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)MMath.cpp" />

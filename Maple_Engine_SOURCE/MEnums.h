@@ -30,6 +30,7 @@ namespace maple::enums {
 	enum class eResourceType {
 		Texture,
 		Mesh,
+		Material,
 		Animation,
 		AudioClip,
 		Shader,

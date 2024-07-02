@@ -130,6 +130,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)MIndexBuffer.cpp">
       <Filter>Graphics\Buffer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)MInputLayout.cpp">
+      <Filter>Graphics\InputLayout</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -270,6 +273,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)MIndexBuffer.h">
       <Filter>Graphics\Buffer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)MInputLayout.h">
+      <Filter>Graphics\InputLayout</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -361,6 +367,9 @@
     </Filter>
     <Filter Include="Graphics\Buffer">
       <UniqueIdentifier>{77017f62-316b-4c73-a071-86acc449a9ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\InputLayout">
+      <UniqueIdentifier>{f08ce2b8-000f-4620-8561-e185b56f45f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
