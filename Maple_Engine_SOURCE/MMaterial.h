@@ -7,11 +7,12 @@
 
 namespace maple
 {
-	class Material : public Resource{
+	class Material : public Resource {
 	public:
 
-		struct Data {
-			std::wstring albedo; //difuuse
+		struct Data //Texture names
+		{
+			std::wstring albedo; //diffuse
 		};
 
 		Material();
@@ -23,12 +24,14 @@ namespace maple
 		void Bind();
 
 		void SetShader(graphics::Shader* shader) { mShader = shader; }
+		void SetAlbedoTexture(graphics::Texture* texture) { mAlbedoTexture = texture; mData.albedo = texture->GetName(); }
 
 	private:
 		graphics::eRenderingMode mMode;
 		Material::Data mData;
 
 		//Texture* mTexture;
+		graphics::Texture* mAlbedoTexture;
 		graphics::Shader* mShader;
 	};
 }

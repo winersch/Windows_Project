@@ -4,6 +4,7 @@
 #include "MResources.h"
 #include "MTexture.h"
 #include "MApplication.h"
+#include "MRenderer.h"
 
 extern maple::Application application;
 
@@ -66,6 +67,8 @@ namespace maple {
 			Resources::Load<graphics::Texture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
 			Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
 			Resources::Load<graphics::Texture>(L"PixelMap", L"..\\Resources\\pixelMap.bmp");
+
+			renderer::Initialize();
 		}
 		m.unlock();
 

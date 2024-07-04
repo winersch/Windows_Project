@@ -49,6 +49,15 @@ namespace maple::graphics
 		End,
 	};
 
+	enum class eTextureType {
+		Albedo,
+		Normal,
+		Specular,
+		Smoothness,
+		Metallic,
+		End,
+	};
+
 	struct GpuBuffer {
 		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer = nullptr;
 		D3D11_BUFFER_DESC desc = {};

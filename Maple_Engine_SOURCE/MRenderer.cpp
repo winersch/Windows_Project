@@ -167,20 +167,24 @@ namespace maple::renderer {
 	void LoadMeterails() {
 
 		Material* triangleMaterial = new Material();
-		maple::Resources::Insert(L"TriangleMaterial", triangleMaterial);
 
 		triangleMaterial->SetShader(maple::Resources::Find<graphics::Shader>(L"TriangleShader"));
+		maple::Resources::Insert(L"TriangleMaterial", triangleMaterial);
+
 
 		Material* spriteMaterial = new Material();
 		maple::Resources::Insert(L"SpriteMaterial", spriteMaterial);
 
 		spriteMaterial->SetShader(maple::Resources::Find<graphics::Shader>(L"SpriteShader"));
 
-		//maple::Resources::Load<graphics::Material>(L"SpriteMaterial", L"..\\Materials\\SpriteMaterial")
+		graphics::Texture* texture = Resources::Find<graphics::Texture>(L"Player");
+		spriteMaterial->SetAlbedoTexture(texture);
+		spriteMaterial->SetShader(maple::Resources::Find<graphics::Shader>(L"SpriteShader"));
+		maple::Resources::Insert(L"SpriteMaterial", spriteMaterial);
+
 	}
 	void LoadConstantBuffers() {
 		constantBuffers[(UINT)eCBType::Transform].Create(eCBType::Transform, sizeof(Vector4));
-
 	}
 
 	void Initialize() {
