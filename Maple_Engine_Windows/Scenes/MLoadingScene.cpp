@@ -5,6 +5,8 @@
 #include "MTexture.h"
 #include "MApplication.h"
 #include "MRenderer.h"
+#include "MTitleScene.h"
+#include "MPlayScene.h"
 
 extern maple::Application application;
 
@@ -62,13 +64,16 @@ namespace maple {
 		m.lock();
 		{
 			Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\CloudOcean.png");
-			Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
-			Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
-			Resources::Load<graphics::Texture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
-			Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
-			Resources::Load<graphics::Texture>(L"PixelMap", L"..\\Resources\\pixelMap.bmp");
+			//Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
+			//Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
+			//Resources::Load<graphics::Texture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
+			//Resources::Load<graphics::Texture>(L"HPBAR", L"..\\Resources\\HPBAR.bmp");
+			//Resources::Load<graphics::Texture>(L"PixelMap", L"..\\Resources\\pixelMap.bmp");
 
 			renderer::Initialize();
+
+			SceneManager::CreateScene<TitleScene>(L"TitleScene");
+			SceneManager::CreateScene<PlayScene>(L"PlayScene");
 		}
 		m.unlock();
 

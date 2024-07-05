@@ -82,10 +82,17 @@ namespace maple {
 	}
 
 	void Application::Render() {
+		graphics::GetDevice()->ClearRenderTargetView();
+		graphics::GetDevice()->ClearDepthStencilView();
+		graphics::GetDevice()->BindViewPort();
+		graphics::GetDevice()->BindDefaultRenderTarget();
+
 		Time::Render();
 		CollisionManager::Render();
 		UIManager::Render();
 		SceneManager::Render();
+
+		graphics::GetDevice()->Present();
 	}
 
 	void Application::Destroy() {
