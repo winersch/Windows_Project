@@ -145,7 +145,7 @@ namespace maple::renderer {
 		inputLayoutDesces[2].SemanticName = "TEXCOORD";
 		inputLayoutDesces[2].SemanticIndex = 0;
 
-		graphics::Shader* spriteShader = Resources::Find<graphics::Shader>(L"SpriteShader");
+		graphics::Shader* spriteShader = Resources::Find<graphics::Shader>(L"Sprite-Default-Shader");
 		mesh->SetVertexBufferParams(3, inputLayoutDesces, spriteShader->GetVSBlob()->GetBufferPointer(), spriteShader->GetVSBlob()->GetBufferSize());
 
 		mesh->CreateVB(vertexes);
@@ -161,7 +161,7 @@ namespace maple::renderer {
 
 	void LoadShaders() {
 		maple::Resources::Load<graphics::Shader>(L"TriangleShader", L"..\\Shaders_SOURCE\\Triangle");
-		maple::Resources::Load<graphics::Shader>(L"SpriteShader", L"..\\Shaders_SOURCE\\Sprite");
+		maple::Resources::Load<graphics::Shader>(L"Sprite-Default-Shader", L"..\\Shaders_SOURCE\\Sprite-Default");
 	}
 
 	void LoadMeterails() {
@@ -175,12 +175,12 @@ namespace maple::renderer {
 		Material* spriteMaterial = new Material();
 		maple::Resources::Insert(L"SpriteMaterial", spriteMaterial);
 
-		spriteMaterial->SetShader(maple::Resources::Find<graphics::Shader>(L"SpriteShader"));
+		spriteMaterial->SetShader(maple::Resources::Find<graphics::Shader>(L"Sprite-Default-Shader"));
 
 		graphics::Texture* texture = Resources::Find<graphics::Texture>(L"Player");
 		spriteMaterial->SetAlbedoTexture(texture);
-		spriteMaterial->SetShader(maple::Resources::Find<graphics::Shader>(L"SpriteShader"));
-		maple::Resources::Insert(L"SpriteMaterial", spriteMaterial);
+		spriteMaterial->SetShader(maple::Resources::Find<graphics::Shader>(L"Sprite-Default-Shader"));
+		maple::Resources::Insert(L"Sprite-Default-Material", spriteMaterial);
 
 	}
 	void LoadConstantBuffers() {
