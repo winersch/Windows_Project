@@ -55,6 +55,27 @@ namespace maple::graphics
 		Specular,
 		Smoothness,
 		Metallic,
+		Sprite,
+		End,
+	};
+
+	enum class eRasterizerState {
+		SolidBack,
+		SolidFront,
+		SolidNone,
+		WireFrame,
+		End,
+	};
+
+	enum class eBlendState {
+		AlphaBlend,
+		OneOne,
+		End,
+	};
+
+	enum class eDepthStencilState {
+		DepthNone,
+		LessEqual,
 		End,
 	};
 

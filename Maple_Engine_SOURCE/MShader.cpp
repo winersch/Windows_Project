@@ -1,9 +1,14 @@
 #include "MShader.h"
+#include "MRenderer.h"
 
 namespace maple::graphics
 {
 	Shader::Shader()
-		: Resource(enums::eResourceType::Shader) {
+		: Resource(enums::eResourceType::Shader)
+		, mRasterizerState(eRasterizerState::SolidBack)
+		, mBlendState(eBlendState::AlphaBlend)
+		, mDepthStencilState(eDepthStencilState::LessEqual) 
+	{
 	}
 
 	Shader::~Shader() {
@@ -54,6 +59,10 @@ namespace maple::graphics
 			GetDevice()->BindVS(mVS.Get());
 		if (mPS)
 			GetDevice()->BindPS(mPS.Get());
+
+		GetDevice()->BindRasterizerState(renderer::rasterizerStates[(UINT)mRasterizerState].Get());
+		GetDevice()->BindBlendState(renderer::blendStates[(UINT)mBlendState].Get(), nullptr, 0xffffff);
+		GetDevice()->BindDepthStencilState(renderer::depthStencilStates[(UINT)mDepthStencilState].Get(), 0);
 	}
 }
 
