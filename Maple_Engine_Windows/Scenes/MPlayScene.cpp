@@ -13,14 +13,13 @@
 #include "MRenderer.h"
 #include "MAnimator.h"
 #include "..\\Maple_Engine_Windows\Contents\MCat.h"
-#include "..\\Maple_Engine_Windows\Scripts\MCatScript.h"
 #include "MBoxCollider2D.h"
 #include "MCollisionManager.h"
 #include "..\\Maple_Engine_Windows\\Contents\\MTile.h"
 #include "MTilemapRenderer.h"
 #include "MRigidbody.h"
+#include "..\\Maple_Engine_Windows\\Scripts\\MCameraScript.h"
 #include "..\\Maple_Engine_Windows\\Contents\\MFloor.h"
-#include "..\\Maple_Engine_Windows\\Scripts\\MFloorScript.h"
 #include "MUIManager.h"
 #include "MAudioClip.h"
 #include "MAudioListener.h"
@@ -45,10 +44,16 @@ namespace maple {
 	
 
 		{
-			//// main camera
-			//GameObject* camera =object::Instantiate<GameObject>(enums::eLayerType::None, Vector2(344.0f, 440.0f));
-			//Camera* cameraComp = camera->AddComponent<Camera>();
-			//renderer::mainCamera = cameraComp;
+			Scene::Initialize();
+
+			// main camera
+			GameObject* camera = object::Instantiate<GameObject>(enums::eLayerType::None, Vector3(0.0f, 0.0f, -10.0f));
+			Camera* cameraComp = camera->AddComponent<Camera>();
+			cameraComp->SetProjectionType(Camera::eProjectionType::Orthographic);
+			cameraComp->SetSize(700.0f);
+
+			CameraScript* cameraScript = camera->AddComponent<CameraScript>();
+			renderer::mainCamera = cameraComp;
 
 			mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
 			object::DontDestroyOnLoad(mPlayer);
@@ -56,7 +61,6 @@ namespace maple {
 			SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 			sr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
 
-			Scene::Initialize();
 		}
 	}
 

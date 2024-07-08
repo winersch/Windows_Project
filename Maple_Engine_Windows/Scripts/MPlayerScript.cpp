@@ -5,7 +5,6 @@
 #include "MInput.h"
 #include "MGameObject.h"
 #include "MResources.h"
-#include "MCatScript.h"
 #include "MObject.h"
 #include "..\\Maple_Engine_Windows\\Contents\\MCat.h"
 #include "MRigidbody.h"
@@ -48,7 +47,7 @@ namespace maple {
 		//}
 
 		//Transform* tr = GetOwner()->GetComponent<Transform>();
-		//Vector2 pos = tr->GetPosition();
+		//Vector3 pos = tr->GetPosition();
 		//COLORREF color = mPixelMap->GetPixel(pos.x, pos.y + 50);
 
 		//Rigidbody* playerRb = GetOwner()->GetComponent<Rigidbody>();
@@ -164,7 +163,7 @@ namespace maple {
 		//	
 		//}
 		//Transform* tr = GetOwner()->GetComponent<Transform>();
-		//Vector2 pos = tr->GetPosition();
+		//Vector3 pos = tr->GetPosition();
 		//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 
 		//float speed = 3.0f;
@@ -207,22 +206,23 @@ namespace maple {
 
 	void PlayerScript::move() {
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Vector2 pos = tr->GetPosition();
+		Vector3 pos = tr->GetPosition();
+
 		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 
-		if (Input::GetKey(eKeyCode::D)) {
+		if (Input::GetKey(eKeyCode::Right)) {
 			//pos.x += 100.0f * Time::DeltaTime();
 			rb->AddForce(Vector2(200.0f, 0.0f));
 		}
-		if (Input::GetKey(eKeyCode::A)) {
+		if (Input::GetKey(eKeyCode::Left)) {
 			//pos.x -= 100.0f * Time::DeltaTime();
 			rb->AddForce(Vector2(-200.0f, 0.0f));
 		}
-		if (Input::GetKey(eKeyCode::W)) {
+		if (Input::GetKey(eKeyCode::Up)) {
 			//pos.y -= 100.0f * Time::DeltaTime();
-			rb->AddForce(Vector2(0.0f, -200.0f));
+			rb->AddForce(Vector2(0.0f, 200.0f));
 		}
-		if (Input::GetKey(eKeyCode::S)) {
+		if (Input::GetKey(eKeyCode::Down)){
 			//pos.y += 100.0f * Time::DeltaTime();
 			rb->AddForce(Vector2(0.0f, 200.0f));
 		}

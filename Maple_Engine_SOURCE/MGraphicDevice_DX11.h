@@ -60,7 +60,7 @@ namespace maple::graphics
 		void ClearDepthStencilView();
 
 		void Initialize();
-		void Draw();
+		void Draw(UINT VertexCount, UINT StartVertexLocation);
 		void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation);
 		void Present();
 

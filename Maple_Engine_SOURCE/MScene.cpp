@@ -1,5 +1,6 @@
 #include "MScene.h"
 #include "MCollisionManager.h"
+#include "MSceneManager.h"
 
 namespace maple {
 
@@ -19,12 +20,8 @@ namespace maple {
 	}
 
 	void Scene::Initialize() {
-		for (Layer* layer : mLayers) {
-			if (layer == nullptr) {
-				continue;
-			}
-			layer->Initialize();
-		}
+		const std::wstring& sceneName = GetName();
+		SceneManager::SetActiveScene(sceneName);
 	}
 
 	void Scene::Update() {

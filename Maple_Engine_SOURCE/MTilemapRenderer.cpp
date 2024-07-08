@@ -38,7 +38,7 @@ namespace maple {
 		//	assert(false);
 
 		//Transform* tr = GetOwner()->GetComponent<Transform>();
-		//Vector2 pos = tr->GetPosition();
+		//Vector3 pos = tr->GetPosition();
 		//float rot = tr->GetRotation();
 		//Vector2 scale = tr->GetScale();
 

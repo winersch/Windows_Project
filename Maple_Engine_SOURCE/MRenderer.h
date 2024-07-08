@@ -12,7 +12,7 @@ namespace maple::renderer {
 
 	extern Camera* mainCamera;
 
-	extern graphics::ConstantBuffer constantBuffers[(UINT)eCBType::End];
+	extern graphics::ConstantBuffer* constantBuffers[(UINT)eCBType::End];
 
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)eSamplerType::End];
 	extern Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)eRasterizerState::End];

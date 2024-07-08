@@ -9,8 +9,7 @@ namespace maple {
 		void Update() override;
 		void LateUpdate() override;
 		void Render() override;
-		void SetIndexPosition(int x, int y);
-
+		
 	private:
 	};
 

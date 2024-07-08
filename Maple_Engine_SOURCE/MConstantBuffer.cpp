@@ -2,17 +2,16 @@
 
 namespace maple::graphics {
 
-	ConstantBuffer::ConstantBuffer()
+	ConstantBuffer::ConstantBuffer(eCBType type)
 		: mSize(0)
-		, mType(eCBType::None)
+		, mType(type)
 	{
 	}
 
 	ConstantBuffer::~ConstantBuffer() {
 	}
 
-	bool ConstantBuffer::Create(eCBType type, UINT size, void* data) {
-		mType = type;
+	bool ConstantBuffer::Create(UINT size, void* data) {
 		mSize = size;
 		desc.ByteWidth = size;
 		desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;

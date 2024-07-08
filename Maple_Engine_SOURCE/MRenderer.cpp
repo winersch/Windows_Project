@@ -9,7 +9,7 @@
 namespace maple::renderer {
 	Camera* mainCamera = nullptr;
 	
-	ConstantBuffer constantBuffers[(UINT)eCBType::End] = {};
+	ConstantBuffer* constantBuffers[(UINT)eCBType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerStates[(UINT)eSamplerType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[(UINT)eRasterizerState::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBlendState::End] = {};
@@ -242,7 +242,8 @@ namespace maple::renderer {
 
 	}
 	void LoadConstantBuffers() {
-		constantBuffers[(UINT)eCBType::Transform].Create(eCBType::Transform, sizeof(Vector4));
+		constantBuffers[CBSLOT_TRANSFORM] = new ConstantBuffer(eCBType::Transform);
+		constantBuffers[CBSLOT_TRANSFORM]->Create(sizeof(TransformCB));
 	}
 
 	void Initialize() {
@@ -254,9 +255,9 @@ namespace maple::renderer {
 	}
 
 	void Release() {
-	//for (int i = 0; i < (UINT)eCBType::End; i++)
-	//{
-	//	constantBuffers[i].Release();
-	//}
+		for (UINT i = 0; i < (UINT)eCBType::End; i++) {
+			delete constantBuffers[i];
+			constantBuffers[i] = nullptr;
+		}
 	}
 }

@@ -18,8 +18,6 @@ namespace maple::enums {
 	enum class eLayerType {
 		None,
 		BackGround,
-		Tile,
-		Animal,
 		Player,
 		Floor,
 		Particle,

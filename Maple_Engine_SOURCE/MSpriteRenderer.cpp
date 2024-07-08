@@ -4,7 +4,7 @@
 #include "MTexture.h"
 #include "MRenderer.h"
 #include "MCamera.h"
-
+#include "MTransform.h"
 #include "MResources.h"
 
 namespace maple {
@@ -31,6 +31,10 @@ namespace maple {
 	}
 
 	void SpriteRenderer::Render() {
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		if (tr)
+			tr->Bind();
+
 		if (mMesh)
 			mMesh->Bind();
 
